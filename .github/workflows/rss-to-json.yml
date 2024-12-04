@@ -1,0 +1,79 @@
+name: RSS to JSON
+
+env:
+  RSS_FEED: https://feeds.buzzsprout.com/1879550.rss
+
+on:
+  workflow_dispatch:
+
+jobs:
+  convert-rss:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch RSS feed
+        run: |
+          curl -sSL $RSS_FEED -o rss-feed.xml
+
+      - name: Parse RSS and generate JSON files
+        run: |
+          # Create an output directory
+          mkdir -p output
+
+          # Parse the RSS feed using a simple Python script
+          python3 - <<EOF
+import os
+import json
+import xml.etree.ElementTree as ET
+
+# Load the RSS feed
+tree = ET.parse('rss-feed.xml')
+root = tree.getroot()
+
+# Define namespaces (adjust if your RSS uses different namespaces)
+namespaces = {
+    'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd',
+    'content': 'http://purl.org/rss/1.0/modules/content/',
+}
+
+# Find all items in the feed
+for item in root.findall('./channel/item', namespaces):
+    # Extract fields
+    guid = item.find('guid').text.split('-')[-1]  # Extract GUID suffix
+    title = item.find('title').text
+    author = item.find('itunes:author', namespaces).text if item.find('itunes:author', namespaces) else ''
+    summary = item.find('itunes:summary', namespaces).text if item.find('itunes:summary', namespaces) else ''
+    description = item.find('description').text if item.find('description') else ''
+    pub_date = item.find('pubDate').text
+    enclosure = item.find('enclosure').attrib.get('url') if item.find('enclosure') is not None else ''
+    duration = item.find('itunes:duration', namespaces).text if item.find('itunes:duration', namespaces) else ''
+
+    # Create JSON data
+    data = {
+        "guid": guid,
+        "title": title,
+        "author": author,
+        "summary": summary,
+        "description": description,
+        "pub_date": pub_date,
+        "audio_url": enclosure,
+        "duration": duration,
+    }
+
+    # Save JSON file
+    json_filename = f"output/{guid}.json"
+    with open(json_filename, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+print("RSS feed converted to JSON files in 'output' directory.")
+EOF
+
+      - name: Commit and push JSON files
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git add output/*.json
+          git commit -m "Add converted RSS feed items as JSON files" || echo "No changes to commit"
+          git push
