@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Providers } from "@/components/Providers";
+import Header from "@/components/Header";
+import Navigation from "@/components/Navigation";
+import Player from "@/components/Player";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const alegreya = localFont({
+  src: "./fonts/Alegreya-Regular.ttf",
+  variable: "--font-alegreya",
+  // weight: "100 500",
+});
+
+const hkGrotesque = localFont({
+  src: "./fonts/HKGrotesk-Bold.ttf",
+  variable: "--font-hk-bold",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const ptSans = localFont({
+  src: "./fonts/PTSans-Regular.ttf",
+  variable: "--font-pt-sans",
+  weight: "100 500",
 });
 
 export const metadata: Metadata = {
@@ -24,11 +35,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`min-h-full ${ptSans.variable} ${hkGrotesque.variable} ${alegreya.variable}`}
       >
-        {children}
+        <Providers>
+          <div className="flex w-full min-h-screen">
+            <Header />
+            <main className="flex-auto ml-[28rem]">
+              <Navigation />
+              <div className="p-10 flex justify-center">
+                <div className="w-[40rem]">{children}</div>
+              </div>
+            </main>
+            <footer></footer>
+            <div className="fixed p-2 bottom-0 left-0 w-[28rem]">
+              <Player />
+            </div>
+          </div>
+        </Providers>
       </body>
     </html>
   );

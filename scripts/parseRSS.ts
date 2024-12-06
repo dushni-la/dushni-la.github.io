@@ -17,9 +17,6 @@ async function parseRSS(rssFilePath: string, outputDir: string) {
       throw new Error("No <item> elements found in the RSS feed.");
     }
 
-    // Ensure output directory exists
-    // await fs.ensureDir(outputDir);
-
     // Process each <item>
     for (const item of items) {
       const guid = item.guid[0]._.split("-").pop(); // Extract GUID suffix
@@ -30,6 +27,8 @@ async function parseRSS(rssFilePath: string, outputDir: string) {
       const pubDate = item.pubDate?.[0];
       const enclosure = item.enclosure?.[0]?.["$"]?.url ?? "";
       const duration = item["itunes:duration"]?.[0] ?? "";
+      const image = item["itunes:image"]?.[0]?.["$"]?.href ?? "";
+      const episode = item["itunes:episode"]?.[0] ?? "";
 
       // Construct JSON object
       const data = {
@@ -41,11 +40,13 @@ async function parseRSS(rssFilePath: string, outputDir: string) {
         pub_date: pubDate,
         audio_url: enclosure,
         duration,
+        image,
+        episode,
       };
 
       // Write JSON file
       const outputFilePath = path.join(outputDir, `${guid}.json`);
-      await Bun.write(outputFilePath,JSON.stringify(data, null, 2));
+      await Bun.write(outputFilePath, JSON.stringify(data, null, 2));
       console.log(`Created: ${outputFilePath}`);
     }
   } catch (error) {

@@ -1,0 +1,52 @@
+import EpisodeCoverPlayer from "@/components/EpisodeCoverPlayer";
+import { Episode } from "@/components/types";
+import NextLink from "next/link";
+import { readdir, readFile } from "node:fs/promises";
+import path from "path";
+import React from "react";
+
+async function getEpisode(id: string): Promise<Episode> {
+  const filePath = path.join(process.cwd(), "output", `${id}.json`);
+  const data = await readFile(filePath, "utf-8");
+  return JSON.parse(data);
+}
+
+const EpisodeItem: React.FC<{ data: Episode }> = async ({ data }) => {
+  return (
+    <div className="divider-y">
+      <NextLink href={`/episodes/${data.guid}`}>
+        <div className="flex flex-row gap-6 text-foreground ">
+          <EpisodeCoverPlayer episode={data} size={100} />
+          <div className="flex flex-col flex-1 gap-2">
+            <p className="text-xl font-[hkGrotesque]">{data.title}</p>
+            <p className="overflow-hidden">{data.summary}</p>
+          </div>
+        </div>
+      </NextLink>
+    </div>
+  );
+};
+
+const EpisodesPage: React.FC = async () => {
+  const folder = await readdir(path.join(process.cwd(), "output"));
+
+  const episodes = await Promise.all(
+    folder.map(async (id) => await getEpisode(id.split(".")[0])),
+  );
+
+  return (
+    <div className="flex flex-col gap-[4rem]">
+      {episodes
+        .sort((a, b) => {
+          return (
+            new Date(b.pub_date).getTime() - new Date(a.pub_date).getTime()
+          );
+        })
+        .map((episode) => (
+          <EpisodeItem key={episode.guid} data={episode} />
+        ))}
+    </div>
+  );
+};
+
+export default EpisodesPage;
