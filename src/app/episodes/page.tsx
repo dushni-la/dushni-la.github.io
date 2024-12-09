@@ -4,6 +4,7 @@ import NextLink from "next/link";
 import { readdir, readFile } from "node:fs/promises";
 import path from "path";
 import React from "react";
+import EpisodeMetadataHeader from "./[id]/EpisodeMetadataHeader";
 
 async function getEpisode(id: string): Promise<Episode> {
   const filePath = path.join(process.cwd(), "output", `${id}.json`);
@@ -14,15 +15,23 @@ async function getEpisode(id: string): Promise<Episode> {
 const EpisodeItem: React.FC<{ data: Episode }> = async ({ data }) => {
   return (
     <div className="divider-y">
-      <NextLink href={`/episodes/${data.guid}`}>
-        <div className="flex flex-row gap-6 text-foreground ">
-          <EpisodeCoverPlayer episode={data} size={100} />
-          <div className="flex flex-col flex-1 gap-2">
-            <p className="text-xl font-[hkGrotesque]">{data.title}</p>
-            <p className="overflow-hidden">{data.summary}</p>
-          </div>
+      <div className="flex flex-row gap-6 group">
+        <EpisodeCoverPlayer episode={data} size={100} />
+        <div className="flex flex-col flex-1 gap-2">
+          <EpisodeMetadataHeader episode={data} />
+          <NextLink
+            href={`/episodes/${data.guid}`}
+            className="text-foreground hover:text-primary-700"
+          >
+            <p className="text-xl font-[hkGrotesque]">
+              #{data.episode}: {data.title}
+            </p>
+          </NextLink>
+          <p className="overflow-hidden text-foreground">
+            {data.summary.split("Support the show")[0]}
+          </p>
         </div>
-      </NextLink>
+      </div>
     </div>
   );
 };
@@ -35,7 +44,7 @@ const EpisodesPage: React.FC = async () => {
   );
 
   return (
-    <div className="flex flex-col gap-[4rem]">
+    <div className="flex flex-col gap-[4rem] w-[40rem]">
       {episodes
         .sort((a, b) => {
           return (

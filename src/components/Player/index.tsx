@@ -3,18 +3,20 @@
 import React from "react";
 import { Card, CardBody, Image, Button, Slider } from "@nextui-org/react";
 import {
+  PiFastForward,
   PiPause,
   PiPlay,
-  PiRepeatOnce,
   PiShuffle,
-  PiSkipBack,
   PiSkipForward,
 } from "react-icons/pi";
 import { usePlayer } from "./PlayerContext";
 import { formatTime } from "../utils";
+import EpisodeMetadataHeader from "@/app/episodes/[id]/EpisodeMetadataHeader";
 
 const Player = () => {
   const player = usePlayer();
+
+  if (!player.currentEpisode) return null;
 
   return (
     <Card
@@ -23,28 +25,30 @@ const Player = () => {
       shadow="sm"
     >
       <CardBody>
-        <div className="flex flex-row gap-4 items-start justify-center">
-          <div className="relative">
-            <Image
-              alt="Album cover"
-              className="object-cover"
-              height={80}
-              width={80}
-              shadow="md"
-              src={player.currentEpisode?.image || "./logo.png"}
-            />
+        <div className="flex flex-col gap-4">
+          <div className="flex w-full flex-1 flex-row gap-4">
+            <div className="relative">
+              <Image
+                alt="Album cover"
+                className="object-cover"
+                height={80}
+                width={80}
+                shadow="md"
+                src={player.currentEpisode?.image || "/logo.png"}
+              />
+            </div>
+            <div className="flex flex-col flex-1 items-start gap-0">
+              <EpisodeMetadataHeader episode={player.currentEpisode} />
+              <h1 className="text-large font-medium leading-[20px] mt-2">
+                #{player.currentEpisode.episode}: {player.currentEpisode?.title}
+              </h1>
+            </div>
           </div>
 
           <div className="flex flex-1 flex-col">
-            <div className="flex flex-auto justify-between items-start">
-              <h1 className="text-large font-medium mt-2">
-                {player.currentEpisode?.title}
-              </h1>
-            </div>
-
-            <div className="flex flex-col mt-3 gap-1">
+            <div className="flex flex-col -mt-2 gap-1">
               <Slider
-                aria-label="Music progress"
+                aria-label="Прогрес"
                 classNames={{
                   track: "bg-default-600/30",
                   thumb: "w-2 h-2 after:w-2 after:h-2 after:bg-foreground",
@@ -56,7 +60,7 @@ const Player = () => {
                 maxValue={player.duration || 0}
                 onChange={(value) => player.seek(value as number)}
               />
-              <div className="flex justify-between">
+              <div className="flex justify-between -mt-1">
                 <p className="text-small">{formatTime(player.currentTime)}</p>
                 <p className="text-small text-foreground/50">
                   {formatTime(player.duration)}
@@ -67,19 +71,23 @@ const Player = () => {
             <div className="flex w-full items-center justify-center">
               <Button
                 isIconOnly
-                className="data-[hover]:bg-foreground/10"
+                className="data-[hover]:bg-foreground/10 flex-col"
                 radius="full"
                 variant="light"
+                onPress={() => player.seek(player.currentTime + 10)}
               >
-                <PiRepeatOnce />
+                <p className="text-xs -mb-[3px]">10</p>
+                <PiFastForward />
               </Button>
               <Button
                 isIconOnly
-                className="data-[hover]:bg-foreground/10"
+                className="data-[hover]:bg-foreground/10 flex-col"
                 radius="full"
                 variant="light"
+                onPress={() => player.seek(player.currentTime + 30)}
               >
-                <PiSkipBack />
+                <p className="text-xs -mb-[3px]">30</p>
+                <PiFastForward />
               </Button>
               <Button
                 isIconOnly

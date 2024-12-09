@@ -44,9 +44,7 @@ export default function RootLayout({
             <Header />
             <main className="flex-auto ml-[28rem]">
               <Navigation />
-              <div className="p-10 flex justify-center">
-                <div className="w-[40rem]">{children}</div>
-              </div>
+              <div className="p-10 flex justify-center">{children}</div>
             </main>
             <footer></footer>
             <div className="fixed p-2 bottom-0 left-0 w-[28rem]">

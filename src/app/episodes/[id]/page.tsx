@@ -5,6 +5,9 @@ import { semanticColors } from "@nextui-org/theme";
 
 import { Episode } from "@/components/types";
 import EpisodeCoverPlayer from "@/components/EpisodeCoverPlayer";
+import SharePanel from "./SharePanel";
+import EpisodeMetadataHeader from "./EpisodeMetadataHeader";
+import TelegramComments from "./TelegramComments";
 
 export async function generateStaticParams() {
   const folder = await readdir(path.join(process.cwd(), "output"));
@@ -60,51 +63,53 @@ export default async function EpisodePage({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-8">
-        <EpisodeCoverPlayer episode={episode} size={200} />
+        <EpisodeCoverPlayer episode={episode} size={180} />
         <div className="flex flex-1 flex-col gap-2">
-          <p className="order-first font-mono text-sm text-default-700">
-            {new Date(episode.pub_date).toLocaleDateString(["uk-ua"])}
-          </p>
+          <div className="flex justify-between">
+            <EpisodeMetadataHeader episode={episode} />
+            <h3 className="text-xl font-[alegreya]">#{episode.episode}</h3>
+          </div>
           <h1 className="text-4xl">{episode.title}</h1>
-          <p>{episode.summary.split("Support the show")[0]}</p>
+          <p className="text-justify">
+            {episode.summary.split("Support the show")[0]}
+          </p>
         </div>
       </div>
+      <div className="flex justify-end">
+        <SharePanel />
+      </div>
+      {episode.youtube_id && (
+        <>
+          <hr className="my-12 border-default-500" />
+          <h2 className="text-xl mb-3">Відео</h2>
+          <iframe
+            className="w-full rounded-xl shadow-lg max-w-[40rem] h-[22.5rem]"
+            src={`https://www.youtube-nocookie.com/embed/${episode.youtube_id}?si=Nw1vG-lpTNaOUmiM`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </>
+      )}
       <hr className="my-12 border-default-500" />
-      <iframe
-        width="560"
-        height="315"
-        className="w-full rounded-xl"
-        src={`https://www.youtube-nocookie.com/embed/${episode.youtube_id}?si=Nw1vG-lpTNaOUmiM`}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      />
+      <h2 className="text-xl">Примітки</h2>
       <div
-        className="text-[1.25rem] leading-[2rem]"
-        dangerouslySetInnerHTML={{ __html: episode.description }}
-      ></div>
-      <audio controls>
-        <source src={episode.audio_url} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-      <h3 className="text-xl">Обговорення</h3>
-      <iframe
-        id="telegram-discussion"
-        src={`https://t.me/dushnila_podcast/${episode.telegram_message_id}?embed=1&discussion=1&comments_limit=5&color=${semanticColors.dark.default}&colorful=1`}
-        width="100%"
-        height="0"
-        frameBorder="0"
-        scrolling="no"
-        style={{
-          overflow: "hidden",
-          colorScheme: "light dark",
-          border: "none",
-          minWidth: 320,
-          height: 500,
+        className="text-lg leading-[2rem]"
+        dangerouslySetInnerHTML={{
+          __html: episode.description.split(
+            `<a rel="payment" href="https://www.patreon.com/dushnila">Support the show`,
+          )[0],
         }}
       />
+      {episode.telegram_message_id && (
+        <>
+          <hr className="my-12 border-default-500" />
+          <h2 className="text-xl">Обговорення</h2>
+          <TelegramComments id={episode.telegram_message_id} />
+        </>
+      )}
     </div>
   );
 }

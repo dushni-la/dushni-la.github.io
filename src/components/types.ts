@@ -11,4 +11,6 @@ export interface Episode {
   image?: string;
   youtube_id?: string;
   telegram_message_id?: string;
+  latest?: boolean;
+  hot?: boolean;
 }

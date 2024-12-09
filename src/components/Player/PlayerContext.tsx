@@ -12,6 +12,7 @@ import { Episode } from "@/components/types";
 
 interface PlayerState {
   currentEpisode: Episode | null;
+  setCurrentEpisode: (val: Episode | null) => void;
   isPlaying: boolean;
   togglePlay: () => void;
   play: (episode: Episode) => void;
@@ -94,6 +95,7 @@ export const PlayerProvider: React.FC<{ children: ReactNode }> = ({
     <PlayerContext.Provider
       value={{
         currentEpisode,
+        setCurrentEpisode,
         isPlaying,
         togglePlay,
         play,

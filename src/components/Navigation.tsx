@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import NextLink from "next/link";
 import {
@@ -8,43 +10,61 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
+import { usePathname } from "next/navigation";
 
-const Navigation = () => (
-  <Navbar>
-    <NavbarBrand />
-    <NavbarContent className="hidden sm:flex gap-4" justify="center">
-      <NavbarItem>
-        <Link color="foreground" href="/" as={NextLink}>
+const NavbarLink: React.FC<{
+  currentPath: string;
+  href: string;
+  children: string;
+}> = ({ currentPath, href, children }) => {
+  const isActive =
+    href === "/" ? currentPath === "/" : currentPath.includes(href);
+  return (
+    <NavbarItem>
+      <Link
+        className={`${isActive ? "text-foreground border-b-4 border-warning -mb-2" : "text-foreground"}`}
+        href={href}
+        as={NextLink}
+        aria-current={isActive ? "page" : undefined}
+      >
+        {children}
+      </Link>
+    </NavbarItem>
+  );
+};
+
+const Navigation = () => {
+  const pathname = usePathname();
+  console.log(pathname);
+  return (
+    <Navbar>
+      <NavbarBrand />
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarLink href="/" currentPath={pathname}>
           Головна
-        </Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Link color="foreground" href="/" as={NextLink}>
-          Статті
-        </Link>
-      </NavbarItem>
-      <NavbarItem isActive>
-        <Link href="/episodes" aria-current="page" as={NextLink}>
-          Епізоди
-        </Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Link color="foreground" href="#" as={NextLink}>
+        </NavbarLink>
+        <NavbarLink href="/episodes" currentPath={pathname}>
+          Випуски
+        </NavbarLink>
+        <NavbarLink href="/blog" currentPath={pathname}>
+          Блог
+        </NavbarLink>
+        <NavbarLink href="/feedback" currentPath={pathname}>
+          Відгуки
+        </NavbarLink>
+        <NavbarLink href="/about" currentPath={pathname}>
           Про автора
-        </Link>
-      </NavbarItem>
-    </NavbarContent>
-    <NavbarContent justify="end">
-      <NavbarItem className="hidden lg:flex">
-        <Link href="#">Login</Link>
-      </NavbarItem>
-      <NavbarItem>
-        <Button as={Link} color="primary" href="#" variant="flat">
-          Sign Up
-        </Button>
-      </NavbarItem>
-    </NavbarContent>
-  </Navbar>
-);
+        </NavbarLink>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <Button as={Link} color="warning" href="#" variant="flat">
+            Підписатись
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+    </Navbar>
+  );
+};
 
 export default Navigation;

@@ -11,10 +11,16 @@ const EpisodeCoverPlayer: React.FC<{ episode: Episode; size: number }> = ({
   size,
 }) => {
   const player = usePlayer();
+  if (!player.currentEpisode) {
+    player.setCurrentEpisode(episode);
+  }
+
   return (
     <Card
       isFooterBlurred
       radius="lg"
+      shadow="md"
+      isBlurred
       className={`border-none`}
       style={{
         width: size,
@@ -24,10 +30,10 @@ const EpisodeCoverPlayer: React.FC<{ episode: Episode; size: number }> = ({
       <CardBody className="justify-center items-center group">
         <div className="absolute left-0 top-0 right-0 bottom-0">
           <Image
-            alt="Woman listing to music"
+            alt={episode.title}
             className="object-cover z-0"
             height={size}
-            src={episode.image}
+            src={episode.image || "/logo.png"}
             width={size}
           />
         </div>
