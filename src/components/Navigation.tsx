@@ -18,13 +18,6 @@ import {
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { MdAdd } from "react-icons/md";
-import {
-  PiPatreonLogoFill,
-  PiSpotifyLogoFill,
-  PiYoutubeLogoFill,
-} from "react-icons/pi";
-import { SiCastbox, SiPocketcasts, SiTelegram } from "react-icons/si";
-import PlatformIcon from "./PlatformIcon";
 import PlatformLinks from "./PlatformLinks";
 import { motion } from "motion/react";
 
