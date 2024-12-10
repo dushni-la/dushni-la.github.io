@@ -5,7 +5,7 @@ import { Button, Card, CardBody, Image } from "@nextui-org/react";
 import FeedbackCard from "./FeedbackCard";
 import { PiArrowRightFill } from "react-icons/pi";
 import EpisodeItem from "@/components/EpisodeItem";
-import { getEpisodes } from "./episodes/page";
+import { getEpisodes } from "./episodes/utils";
 import PlayEpisodeButton from "./PlayEpisodeButton";
 import Link from "next/link";
 

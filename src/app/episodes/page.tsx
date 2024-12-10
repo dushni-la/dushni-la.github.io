@@ -1,24 +1,6 @@
-import { Episode } from "@/components/types";
-import { readdir, readFile } from "node:fs/promises";
-import path from "path";
 import React from "react";
 import EpisodeItem from "@/components/EpisodeItem";
-
-export async function getEpisode(id: string): Promise<Episode> {
-  const filePath = path.join(process.cwd(), "output", `${id}.json`);
-  const data = await readFile(filePath, "utf-8");
-  return JSON.parse(data);
-}
-
-export async function getEpisodes(): Promise<Episode[]> {
-  const folder = await readdir(path.join(process.cwd(), "output"));
-
-  const episodes = await Promise.all(
-    folder.map(async (id) => await getEpisode(id.split(".")[0])),
-  );
-
-  return episodes;
-}
+import { getEpisodes } from "./utils";
 
 const EpisodesPage: React.FC = async () => {
   const episodes = await getEpisodes();
