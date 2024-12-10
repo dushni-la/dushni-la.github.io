@@ -2,7 +2,6 @@
 
 import {
   Button,
-  ButtonGroup,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -18,7 +17,7 @@ import {
   FaViber,
   FaWhatsapp,
 } from "react-icons/fa";
-import { FaSquareXTwitter, FaThreads, FaX } from "react-icons/fa6";
+import { FaSquareXTwitter, FaThreads } from "react-icons/fa6";
 import { PiShareFat } from "react-icons/pi";
 import {
   EmailShareButton,
@@ -60,7 +59,13 @@ const SharePanel = () => (
     placement="top-end"
   >
     <PopoverTrigger>
-      <Button>
+      <Button
+        className="text-tiny"
+        variant="flat"
+        color="primary"
+        radius="lg"
+        size="sm"
+      >
         <PiShareFat />
         Поділитись
       </Button>

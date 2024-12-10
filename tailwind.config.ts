@@ -10,6 +10,10 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "hero-pattern": "url('/pattern.png')",
+        "hero-pattern-dark": "url('/pattern_dark.png')",
+      },
       variants: {
         extend: {
           display: ["group-hover"],
@@ -95,7 +99,7 @@ export default {
               "800": "#79692a",
               "900": "#4d431b",
               foreground: "#000",
-              DEFAULT: "#ffde59",
+              DEFAULT: "#ffde58",
             },
             danger: {
               "50": "#fff2ef",
@@ -207,7 +211,7 @@ export default {
               "600": "#fff4c9",
               "700": "#fffcee",
               foreground: "#000",
-              DEFAULT: "#c6ac45",
+              DEFAULT: "#ffde58",
             },
             danger: {
               "50": "#52302a",

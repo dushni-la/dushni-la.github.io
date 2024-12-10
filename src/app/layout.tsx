@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
-import Header from "@/components/Header";
-import Navigation from "@/components/Navigation";
 import Player from "@/components/Player";
 
 const alegreya = localFont({
@@ -39,15 +37,26 @@ export default function RootLayout({
       <body
         className={`min-h-full ${ptSans.variable} ${hkGrotesque.variable} ${alegreya.variable}`}
       >
+        <svg
+          className="pointer-events-none fixed isolate z-50 opacity-70 mix-blend-soft-light"
+          width="100%"
+          height="100%"
+        >
+          <filter id="noise">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.80"
+              numOctaves="4"
+              stitchTiles="stitch"
+            ></feTurbulence>
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noise)"></rect>
+        </svg>
         <Providers>
           <div className="flex w-full min-h-screen">
-            <Header />
-            <main className="flex-auto ml-[28rem]">
-              <Navigation />
-              <div className="p-10 flex justify-center">{children}</div>
-            </main>
+            {children}
             <footer></footer>
-            <div className="fixed p-2 bottom-0 left-0 w-[28rem]">
+            <div className="fixed bottom-8 left-8 w-[26rem]">
               <Player />
             </div>
           </div>
@@ -56,3 +65,4 @@ export default function RootLayout({
     </html>
   );
 }
+// <Header />

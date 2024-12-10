@@ -1,0 +1,51 @@
+import { Button } from "@nextui-org/react";
+import PlatformIcon from "./PlatformIcon";
+import { Platform } from "./types";
+
+const PLATFORM_NAMES: Record<Platform, string> = {
+  apple: "Apple Podcasts",
+  spotify: "Spotify",
+  youtube: "YouTube",
+  patreon: "Patreon",
+  castbox: "CastBox",
+  pocketcasts: "Pocket Casts",
+  telegram: "Telegram",
+};
+
+const PLATFORM_LINKS: Record<Platform, string> = {
+  apple: "https://podcasts.apple.com/ua/podcast/душніла/id1592740343?i=",
+  spotify: "https://open.spotify.com/show/2MbpdcWZl19Fm6akAP89Sa",
+  youtube:
+    "https://www.youtube.com/playlist?list=PLraWTkDIObR4Spc5kY70gne7-bQync2wd",
+  patreon: "https://patreon.com/dushnila",
+  castbox:
+    "https://castbox.fm/channel/%D0%94%D1%83%D1%88%D0%BD%D1%96%D0%BB%D0%B0-id4647098",
+  pocketcasts:
+    "https://play.pocketcasts.com/podcasts/share?id=ec9b4490-1b13-013a-d5bc-0acc26574db2",
+  telegram: "https://t.me/dushnila_podcast",
+};
+
+interface Props {
+  hideLabels?: boolean;
+}
+
+const PlatformLinks: React.FC<Props> = ({ hideLabels }) => (
+  <>
+    {(Object.keys(PLATFORM_LINKS) as Platform[]).map((p) => (
+      <Button
+        key={p}
+        radius="full"
+        className="bg-gradient-to-tr from-default-50 to-default-200 shadow-lg cursor-pointer"
+        as={"a"}
+        href={PLATFORM_LINKS[p]}
+        target="_blank"
+        isIconOnly={hideLabels}
+      >
+        <PlatformIcon platform={p} size="2xl" />
+        {!hideLabels && PLATFORM_NAMES[p]}
+      </Button>
+    ))}
+  </>
+);
+
+export default PlatformLinks;

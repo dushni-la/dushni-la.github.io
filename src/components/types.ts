@@ -14,3 +14,21 @@ export interface Episode {
   latest?: boolean;
   hot?: boolean;
 }
+
+export type Platform =
+  | "apple"
+  | "telegram"
+  | "spotify"
+  | "patreon"
+  | "castbox"
+  | "pocketcasts"
+  | "youtube";
+
+export interface Feedback {
+  username: string;
+  title?: string;
+  text: string;
+  platform: Platform;
+  stars: 4 | 5;
+  date?: string;
+}

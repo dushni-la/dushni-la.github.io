@@ -1,77 +1,63 @@
 "use client";
 
 import React from "react";
-import { Card, Image, Button, CardBody } from "@nextui-org/react";
-import { PiPauseFill, PiPlayFill } from "react-icons/pi";
+import { Card, Image, CardBody } from "@nextui-org/react";
 import { Episode } from "@/components/types";
-import { usePlayer } from "@/components/Player/PlayerContext";
+import SharePanel from "@/components/SharePanel";
 
-const EpisodeCoverPlayer: React.FC<{ episode: Episode; size: number }> = ({
-  episode,
-  size,
-}) => {
-  const player = usePlayer();
-  if (!player.currentEpisode) {
-    player.setCurrentEpisode(episode);
-  }
+import { motion } from "motion/react";
+import PlayEpisodeButton from "@/app/PlayEpisodeButton";
 
+const sizeToPx = {
+  sm: 80,
+  md: 100,
+  lg: 180,
+};
+
+const MotionCard = motion.create(Card);
+
+const EpisodeCoverPlayer: React.FC<{
+  episode: Episode;
+  size: "sm" | "md" | "lg";
+}> = ({ episode, size }) => {
   return (
-    <Card
-      isFooterBlurred
-      radius="lg"
-      shadow="md"
-      isBlurred
-      className={`border-none`}
-      style={{
-        width: size,
-        height: size,
-      }}
-    >
-      <CardBody className="justify-center items-center group">
-        <div className="absolute left-0 top-0 right-0 bottom-0">
-          <Image
-            alt={episode.title}
-            className="object-cover z-0"
-            height={size}
-            src={episode.image || "/logo.png"}
-            width={size}
-          />
-        </div>
-        <Button
-          type="button"
-          aria-label={`Грати випуск "${episode.title}"`}
-          isIconOnly
-          className="flex h-[4rem] w-[4rem] flex-shrink-0 opacity-0 group-hover:opacity-100 items-center justify-center rounded-full bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring focus:ring-slate-700 focus:ring-offset-4 text-white shadow-small"
-          onPress={
-            player.currentEpisode?.guid === episode.guid
-              ? () => player.togglePlay()
-              : () => player.play(episode)
-          }
-        >
-          {player.isPlaying && player.currentEpisode?.guid === episode.guid ? (
-            <PiPauseFill />
-          ) : (
-            <PiPlayFill />
-          )}
-        </Button>
-      </CardBody>
-      {/*
-          <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-            <p className="text-tiny text-white/80">
-              {Math.floor(parseInt(episode.duration) / 60)} хв
-            </p>
-            <Button
-              className="text-tiny text-white bg-black/20"
-              variant="flat"
-              color="default"
-              radius="lg"
-              size="sm"
-            >
-              Слухати
-            </Button>
-          </CardFooter>
-            */}
-    </Card>
+    <div className="flex flex-col gap-4">
+      <MotionCard
+        isFooterBlurred
+        radius="lg"
+        shadow="md"
+        isBlurred
+        className={`border-none`}
+        style={{
+          width: sizeToPx[size],
+          height: sizeToPx[size],
+        }}
+        layoutId={episode.image || "undefined"}
+      >
+        <CardBody className="justify-center items-center group">
+          <div className="absolute left-0 top-0 right-0 bottom-0">
+            <Image
+              alt={episode.title}
+              className="object-cover z-0"
+              height={sizeToPx[size]}
+              src={episode.image || "/logo.png"}
+              width={sizeToPx[size]}
+            />
+          </div>
+        </CardBody>
+      </MotionCard>
+      <PlayEpisodeButton
+        episode={episode}
+        className="text-tiny"
+        variant="flat"
+        color="primary"
+        radius="lg"
+        size="sm"
+        playTitle="Слухати"
+        pauseTitle="Пауза"
+      />
+      <SharePanel />
+    </div>
   );
 };
 

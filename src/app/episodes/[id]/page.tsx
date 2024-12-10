@@ -1,12 +1,10 @@
 import path from "path";
 import { readdir, readFile } from "node:fs/promises";
 import { Metadata } from "next";
-import { semanticColors } from "@nextui-org/theme";
 
 import { Episode } from "@/components/types";
 import EpisodeCoverPlayer from "@/components/EpisodeCoverPlayer";
-import SharePanel from "./SharePanel";
-import EpisodeMetadataHeader from "./EpisodeMetadataHeader";
+import EpisodeMetadataHeader from "@/components/EpisodeMetadataHeader";
 import TelegramComments from "./TelegramComments";
 
 export async function generateStaticParams() {
@@ -63,20 +61,14 @@ export default async function EpisodePage({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-row gap-8">
-        <EpisodeCoverPlayer episode={episode} size={180} />
+        <EpisodeCoverPlayer episode={episode} size="lg" />
         <div className="flex flex-1 flex-col gap-2">
-          <div className="flex justify-between">
-            <EpisodeMetadataHeader episode={episode} />
-            <h3 className="text-xl font-[alegreya]">#{episode.episode}</h3>
-          </div>
-          <h1 className="text-4xl">{episode.title}</h1>
+          <EpisodeMetadataHeader episode={episode} />
+          <h1 className="dark:text-default-700 text-4xl">{episode.title}</h1>
           <p className="text-justify">
             {episode.summary.split("Support the show")[0]}
           </p>
         </div>
-      </div>
-      <div className="flex justify-end">
-        <SharePanel />
       </div>
       {episode.youtube_id && (
         <>

@@ -11,7 +11,7 @@ import {
 } from "react-icons/pi";
 import { usePlayer } from "./PlayerContext";
 import { formatTime } from "../utils";
-import EpisodeMetadataHeader from "@/app/episodes/[id]/EpisodeMetadataHeader";
+import EpisodeMetadataHeader from "@/components/EpisodeMetadataHeader";
 
 const Player = () => {
   const player = usePlayer();
@@ -21,7 +21,7 @@ const Player = () => {
   return (
     <Card
       isBlurred
-      className="border-none bg-background/60 dark:bg-default-100/50"
+      className="border-none bg-background/10 dark:bg-foreground/10"
       shadow="sm"
     >
       <CardBody>
@@ -39,8 +39,8 @@ const Player = () => {
             </div>
             <div className="flex flex-col flex-1 items-start gap-0">
               <EpisodeMetadataHeader episode={player.currentEpisode} />
-              <h1 className="text-large font-medium leading-[20px] mt-2">
-                #{player.currentEpisode.episode}: {player.currentEpisode?.title}
+              <h1 className="dark:text-default-700 text-large font-medium leading-[20px] mt-2">
+                {player.currentEpisode?.title}
               </h1>
             </div>
           </div>
