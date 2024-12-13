@@ -44,7 +44,7 @@ export async function generateMetadata({
       description: episode.summary,
       images: [
         {
-          url: episode.image || "/logo.png",
+          url: episode.image || "https://dushni.la/og_image.png",
           alt: `Обкладинка епізоду ${episode.title}`,
         },
       ],
