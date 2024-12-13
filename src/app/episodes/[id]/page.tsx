@@ -77,7 +77,7 @@ export default async function EpisodePage({
           <div className="relative overflow-hidden w-full pt-[56.25%] rounded-xl shadow-lg self-center">
             <iframe
               className="absolute top-0 left-0 right-0 bottom-0 w-full h-full"
-              src={`https://www.youtube-nocookie.com/embed/${episode.youtube_id}?si=Nw1vG-lpTNaOUmiM`}
+              src={`https://www.youtube.com/embed/${episode.youtube_id}?`}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -97,11 +97,11 @@ export default async function EpisodePage({
           )[0],
         }}
       />
-      {episode.telegram_message_id && (
+      {episode.telegram_id && (
         <>
           <Divider />
           <h2 className="text-xl">Обговорення</h2>
-          <TelegramComments id={episode.telegram_message_id} />
+          <TelegramComments id={episode.telegram_id} />
         </>
       )}
     </div>

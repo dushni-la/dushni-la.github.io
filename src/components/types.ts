@@ -10,7 +10,7 @@ export interface Episode {
   episode: string;
   image?: string;
   youtube_id?: string;
-  telegram_message_id?: string;
+  telegram_id?: string;
   latest?: boolean;
   hot?: boolean;
 }
