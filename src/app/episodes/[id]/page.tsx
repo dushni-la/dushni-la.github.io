@@ -30,10 +30,10 @@ export async function generateMetadata({
       title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
       description: episode.summary,
       type: "video.episode",
-      url: `/episodes/${id}`,
+      url: `https://dushni.la/episodes/${id}`,
       images: [
         {
-          url: episode.image || "/og_image.png",
+          url: episode.image || "https://dushni.la/og_image.png",
           alt: `Обкладинка епізоду ${episode.title}`,
         },
       ],
