@@ -1,13 +1,26 @@
-import { readdir } from "node:fs/promises";
-import path from "node:path";
 import Redirect from "./redirect";
+import { getEpisodes } from "../episodes/utils";
+import Head from "next/head";
 
 export default async function LatestRedirect() {
-  const folder = await readdir(path.join(process.cwd(), "output"));
+  const episodes = await getEpisodes();
 
-  const episode = (
-    await Promise.all(folder.map(async (id) => +id.split(".")[0]))
-  ).sort()[0];
+  const sortedEpisodes = episodes.sort((a, b) => {
+    return new Date(b.pub_date).getTime() - new Date(a.pub_date).getTime();
+  });
 
-  return <Redirect id={episode} />;
+  const latest = sortedEpisodes[0];
+
+  return (
+    <>
+      <Head>
+        <link
+          rel="canonical"
+          href={`https://dushni.la/episodes/${latest.guid}`}
+          key="canonical"
+        />
+      </Head>
+      <Redirect id={+latest.guid} />
+    </>
+  );
 }

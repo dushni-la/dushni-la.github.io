@@ -11,11 +11,25 @@ import Link from "next/link";
 import SubscribeButton from "@/components/SubscribeButton";
 import Section from "@/components/Section";
 import type { Metadata } from "next";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Душніла — подкаст про філософію, психологію та самоаналіз.",
   description:
     "Душніла — подкаст для тих, хто хоче краще зрозуміти себе та світ навколо. Роздуми про життя, філософію, психологію та саморозвиток. Підписуйся та слухай!",
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Душніла — подкаст про філософію, психологію та самоаналіз.",
+    description:
+      "Душніла — подкаст для тих, хто хоче краще зрозуміти себе та світ навколо. Роздуми про життя, філософію, психологію та саморозвиток. Підписуйся та слухай!",
+    images: [
+      {
+        url: "/og_image.png",
+        alt: "Обкладинка подкасту Душніла",
+      },
+    ],
+  },
 };
 
 const feedback: Feedback[] = [
@@ -252,114 +266,120 @@ export default async function Home() {
   ];
 
   return (
-    <main className="flex-auto overflow-x-hidden">
-      <Navigation />
-      <div className="p-4 md:p-10 flex flex-col gap-16 pb-0">
-        <HeroCard latest={sorted[0]} />
-        <Section
-          title="Свіжий епізод"
-          subtitle="Свіжий ковток аналізу, щоб побачити звичне під іншим кутом."
-        >
-          <div className="md:w-[40rem] self-center flex flex-col gap-4 relative">
-            <div className="absolute top-[-2rem] left-[-2rem] right-[-2rem] bottom-[-2rem] bg-gradient-to-br from-cyan-200 to-warning blur-3xl z-0" />
-            <EpisodeItem data={sorted[0]} />
-            <Button
-              fullWidth
-              color="default"
-              variant="solid"
-              className="shadow-lg cursor-pointer"
-              as={Link}
-              href="/episodes"
-            >
-              Всі епізоди
-              <PiArrowRightFill />
-            </Button>
-          </div>
-        </Section>
-        <Section
-          title="Досягнення"
-          subtitle="Перемоги, які надихають продовжувати копати глибше."
-        >
-          <div className="grid grid-cols-2 self-center items-center gap-8">
-            {achievements.map((ach, idx) => (
-              <AchievementCard key={idx} idx={idx} {...ach} />
-            ))}
-          </div>
-        </Section>
-        <Section
-          title="Що кажуть слухачі"
-          subtitle="Щирі враження від тих, хто любить думати."
-        >
-          <div className="columns-1 md:columns-2 lg:columns-3 lg:max-w-[80rem] self-center">
-            {feedback.slice(6).map((f) => (
-              <FeedbackCard key={f.username} data={f} />
-            ))}
-          </div>
-        </Section>
-        <Section
-          title="Про автора"
-          subtitle="Той, хто не втомлюється задавати собі запитання — і вам теж."
-        >
-          <div className="md:w-[40rem] self-center mt-[6rem]">
-            <Card className="relative overflow-visible">
-              <Image
-                classNames={{
-                  wrapper:
-                    "absolute top-[-80px] left-[calc(50%-50px)] md:left-[unset] md:top-[-100px] md:right-[-10px] lg:right-[-50px] shadow-lg",
-                }}
-                alt="logo"
-                src="https://avatars.githubusercontent.com/u/1727140?v=4"
-                isBlurred
-                width={200}
-                className="w-[100px] h-[100px] md:w-[160px] md:h-[160px]"
-              />
-              <CardBody className="bg-default-50 p-10 gap-6 rounded-[1rem]">
-                <h2>
-                  👋 Привіт! Я Ігор Кузьменко, автор подкасту
-                  &quot;Душніла&quot;.
-                </h2>
-                <p>
-                  Я той, хто вірить, що глибокі питання формують сильних людей.
-                  Мій шлях — це постійний пошук сенсу в сучасному хаосі: через
-                  філософію, психологію, стоїцизм та досвід реального життя.
-                </p>
+    <>
+      <Head>
+        <link rel="canonical" href={`https://dushni.la/`} key="canonical" />
+      </Head>
+      <main className="flex-auto overflow-x-hidden">
+        <Navigation />
+        <div className="p-4 md:p-10 flex flex-col gap-16 pb-0">
+          <HeroCard latest={sorted[0]} />
+          <Section
+            title="Свіжий епізод"
+            subtitle="Свіжий ковток аналізу, щоб побачити звичне під іншим кутом."
+          >
+            <div className="md:w-[40rem] self-center flex flex-col gap-4 relative">
+              <div className="absolute top-[-2rem] left-[-2rem] right-[-2rem] bottom-[-2rem] bg-gradient-to-br from-cyan-200 to-warning blur-3xl z-0" />
+              <EpisodeItem data={sorted[0]} />
+              <Button
+                fullWidth
+                color="default"
+                variant="solid"
+                className="shadow-lg cursor-pointer"
+                as={Link}
+                href="/episodes"
+              >
+                Всі епізоди
+                <PiArrowRightFill />
+              </Button>
+            </div>
+          </Section>
+          <Section
+            title="Досягнення"
+            subtitle="Перемоги, які надихають продовжувати копати глибше."
+          >
+            <div className="grid grid-cols-2 self-center items-center gap-8">
+              {achievements.map((ach, idx) => (
+                <AchievementCard key={idx} idx={idx} {...ach} />
+              ))}
+            </div>
+          </Section>
+          <Section
+            title="Що кажуть слухачі"
+            subtitle="Щирі враження від тих, хто любить думати."
+          >
+            <div className="columns-1 md:columns-2 lg:columns-3 lg:max-w-[80rem] self-center">
+              {feedback.slice(6).map((f) => (
+                <FeedbackCard key={f.username} data={f} />
+              ))}
+            </div>
+          </Section>
+          <Section
+            title="Про автора"
+            subtitle="Той, хто не втомлюється задавати собі запитання — і вам теж."
+          >
+            <div className="md:w-[40rem] self-center mt-[6rem]">
+              <Card className="relative overflow-visible">
+                <Image
+                  classNames={{
+                    wrapper:
+                      "absolute top-[-80px] left-[calc(50%-50px)] md:left-[unset] md:top-[-100px] md:right-[-10px] lg:right-[-50px] shadow-lg",
+                  }}
+                  alt="logo"
+                  src="https://avatars.githubusercontent.com/u/1727140?v=4"
+                  isBlurred
+                  width={200}
+                  className="w-[100px] h-[100px] md:w-[160px] md:h-[160px]"
+                />
+                <CardBody className="bg-default-50 p-10 gap-6 rounded-[1rem]">
+                  <h2>
+                    👋 Привіт! Я Ігор Кузьменко, автор подкасту
+                    &quot;Душніла&quot;.
+                  </h2>
+                  <p>
+                    Я той, хто вірить, що глибокі питання формують сильних
+                    людей. Мій шлях — це постійний пошук сенсу в сучасному
+                    хаосі: через філософію, психологію, стоїцизм та досвід
+                    реального життя.
+                  </p>
 
-                <p>
-                  Чому &quot;Душніла&quot;? Бо я переконаний, що втомитися від
-                  поверхневого — це нормально. Мої роздуми — це спроба допомогти
-                  вам побачити зв&apos;язки там, де їх важко знайти, і дати
-                  новий ракурс для вашого особистого зростання.
-                </p>
+                  <p>
+                    Чому &quot;Душніла&quot;? Бо я переконаний, що втомитися від
+                    поверхневого — це нормально. Мої роздуми — це спроба
+                    допомогти вам побачити зв&apos;язки там, де їх важко знайти,
+                    і дати новий ракурс для вашого особистого зростання.
+                  </p>
 
-                <p>
-                  Кожен епізод — це частина моєї подорожі, але й, можливо, ключ
-                  до ваших власних відкриттів. Мене надихає ваша підтримка, ваші
-                  відгуки і те, що ми разом створюємо ком&apos;юніті, яке не
-                  боїться запитувати &quot;Чому?&quot;.
-                </p>
+                  <p>
+                    Кожен епізод — це частина моєї подорожі, але й, можливо,
+                    ключ до ваших власних відкриттів. Мене надихає ваша
+                    підтримка, ваші відгуки і те, що ми разом створюємо
+                    ком&apos;юніті, яке не боїться запитувати &quot;Чому?&quot;.
+                  </p>
 
-                <h3 className="text-center mb-4">
-                  Людина, яка питає, — це&nbsp;людина,&nbsp;яка&nbsp;живе.
-                  <br />
-                  Запрошую вас приєднатися до&nbsp;цієї&nbsp;подорожі!
-                </h3>
-                <SubscribeButton radius="full" />
-                <Button
-                  fullWidth
-                  color="primary"
-                  variant="flat"
-                  radius="full"
-                  as={Link}
-                  href="/episodes"
-                >
-                  Знайти епізод по душі
-                  <PiArrowRightFill />
-                </Button>
-              </CardBody>
-            </Card>
-          </div>
-        </Section>
-      </div>
-    </main>
+                  <h3 className="text-center mb-4">
+                    Людина, яка питає, — це&nbsp;людина,&nbsp;яка&nbsp;живе.
+                    <br />
+                    Запрошую вас приєднатися до&nbsp;цієї&nbsp;подорожі!
+                  </h3>
+                  <SubscribeButton radius="full" />
+                  <Button
+                    fullWidth
+                    color="primary"
+                    variant="flat"
+                    radius="full"
+                    as={Link}
+                    href="/episodes"
+                  >
+                    Знайти епізод по душі
+                    <PiArrowRightFill />
+                  </Button>
+                </CardBody>
+              </Card>
+            </div>
+          </Section>
+        </div>
+      </main>
+    </>
   );
 }
