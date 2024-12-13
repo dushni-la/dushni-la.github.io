@@ -47,7 +47,7 @@ export default function RootLayout({
           <div className="flex flex-col w-full min-h-screen">
             {children}
             <Footer />
-            <div className="fixed bottom-8 left-8 w-[26rem] z-11">
+            <div className="fixed bottom-0 left-0 md:bottom-8 md:left-8 md:w-[26rem] z-50">
               <Player />
             </div>
           </div>
