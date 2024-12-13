@@ -10,6 +10,13 @@ import PlayEpisodeButton from "./PlayEpisodeButton";
 import Link from "next/link";
 import SubscribeButton from "@/components/SubscribeButton";
 import Section from "@/components/Section";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Душніла — подкаст про філософію, психологію та самоаналіз.",
+  description:
+    "Душніла — подкаст для тих, хто хоче краще зрозуміти себе та світ навколо. Роздуми про життя, філософію, психологію та саморозвиток. Підписуйся та слухай!",
+};
 
 const feedback: Feedback[] = [
   {
@@ -175,9 +182,9 @@ const HeroCard = ({ latest }: { latest: Episode }) => (
     />
     <CardBody className="relative flex p-10 pt-[6rem] pb-[4rem] md:pb-10 rounded-[1rem] bg-default-100 flex-row justify-between items-end gap-8 lg:border-x lg:border-default-200 dark:lg:border-[#25242c] bg-hero-pattern dark:bg-hero-pattern-dark">
       <div className="flex flex-col gap-1 flex-1">
-        <p className="font-[alegreya] text-3xl">
+        <h1 className="font-[alegreya] text-3xl">
           Подкаст про розуміння себе і світу.
-        </p>
+        </h1>
         <p>
           Занурюємося в філософію, психологію та критичне мислення, щоб побачити
           більше.

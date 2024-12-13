@@ -3,6 +3,14 @@ import EpisodeItem from "@/components/EpisodeItem";
 import { getEpisodes } from "./utils";
 import Section from "@/components/Section";
 import { Image } from "@nextui-org/react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "Всі епізоди подкасту Душніла | Душніла — подкаст про філософію, психологію та самоаналіз.",
+  description:
+    "Ознайомся з усіма епізодами подкасту Душніла. Психологія, філософія, самоаналіз та життєві історії. Обери свій улюблений випуск!",
+};
 
 const EpisodesPage: React.FC = async () => {
   const episodes = await getEpisodes();
@@ -43,7 +51,8 @@ const EpisodesPage: React.FC = async () => {
         />
       </div>
       <Section
-        title="Попередні епізоди"
+        title="Епізоди подкасту Душніла"
+        titleH1
         subtitle={`Всі ${episodes.length} епізоди.`}
       >
         <div className="p-2 md:p-4 lg:p-10 flex flex-1 flex-col gap-4 md:gap-[4rem] w-full md:w-[50rem] self-center items-center">

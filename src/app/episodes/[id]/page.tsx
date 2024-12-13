@@ -23,23 +23,30 @@ export async function generateMetadata({
   const { id } = await params;
   const episode = await getEpisode(id);
   return {
-    title: episode.title,
+    title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
     description: episode.summary,
     openGraph: {
-      title: episode.title,
+      title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
       description: episode.summary,
-      type: "article",
+      type: "video.episode",
       url: `/episodes/${id}`,
       images: [
         {
-          url: episode.image || "logo.png",
+          url: episode.image || "/logo.png",
+          alt: `Обкладинка епізоду ${episode.title}`,
         },
       ],
     },
     twitter: {
       card: "summary",
-      title: episode.title,
+      title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
       description: episode.summary,
+      images: [
+        {
+          url: episode.image || "/logo.png",
+          alt: `Обкладинка епізоду ${episode.title}`,
+        },
+      ],
     },
   };
 }
