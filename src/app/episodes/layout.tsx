@@ -1,13 +1,11 @@
-import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 
 export default function EpisodesLayout({ children }: React.PropsWithChildren) {
   return (
     <>
-      <Header />
-      <main className="flex-auto ml-[30rem]">
+      <main className="flex-auto">
         <Navigation />
-        <div className="p-10 flex justify-center">{children}</div>
+        <div className="flex justify-center w-full flex-1">{children}</div>
       </main>
     </>
   );

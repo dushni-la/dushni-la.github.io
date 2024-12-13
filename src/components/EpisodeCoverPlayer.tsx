@@ -21,7 +21,7 @@ const EpisodeCoverPlayer: React.FC<{
   size: "sm" | "md" | "lg";
 }> = ({ episode, size }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-row md:flex-col gap-4">
       <MotionCard
         isFooterBlurred
         radius="lg"
@@ -32,7 +32,6 @@ const EpisodeCoverPlayer: React.FC<{
           width: sizeToPx[size],
           height: sizeToPx[size],
         }}
-        layoutId={episode.image || "undefined"}
       >
         <CardBody className="justify-center items-center group">
           <div className="absolute left-0 top-0 right-0 bottom-0">
@@ -46,17 +45,19 @@ const EpisodeCoverPlayer: React.FC<{
           </div>
         </CardBody>
       </MotionCard>
-      <PlayEpisodeButton
-        episode={episode}
-        className="text-tiny"
-        variant="flat"
-        color="primary"
-        radius="lg"
-        size="sm"
-        playTitle="Слухати"
-        pauseTitle="Пауза"
-      />
-      <SharePanel />
+      <div className="flex flex-1 flex-col gap-4">
+        <PlayEpisodeButton
+          episode={episode}
+          className="text-tiny"
+          variant="flat"
+          color="primary"
+          radius="lg"
+          size="sm"
+          playTitle="Слухати"
+          pauseTitle="Пауза"
+        />
+        <SharePanel />
+      </div>
     </div>
   );
 };

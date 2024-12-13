@@ -9,7 +9,7 @@ import { PiReadCvLogoFill } from "react-icons/pi";
 const EpisodeItem: React.FC<{ data: Episode }> = ({ data }) => {
   return (
     <Card isBlurred className="rounded-[1.5rem]">
-      <CardBody className="bg-background flex flex-row gap-6 group p-6">
+      <CardBody className="bg-background flex flex-col-reverse md:flex-col md:flex-row gap-6 group p-6">
         <EpisodeCoverPlayer episode={data} size="md" />
         <div className="flex flex-col flex-1 gap-2">
           <EpisodeMetadataHeader episode={data} />

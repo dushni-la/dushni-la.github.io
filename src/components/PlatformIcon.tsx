@@ -2,6 +2,7 @@ import {
   PiApplePodcastsLogoFill,
   PiPatreonLogoFill,
   PiSpotifyLogoFill,
+  PiTipJarFill,
   PiYoutubeLogoFill,
 } from "react-icons/pi";
 import { SiCastbox, SiPocketcasts, SiTelegram } from "react-icons/si";
@@ -20,6 +21,7 @@ const PLATFORM_TO_COLOR: Record<Props["platform"], string> = {
   castbox: "#ff6222",
   pocketcasts: "#F43E37",
   youtube: "red",
+  monobank: "#ffde58",
 };
 
 const PLATFORM_TO_ICON: Record<Props["platform"], React.ReactNode> = {
@@ -30,6 +32,7 @@ const PLATFORM_TO_ICON: Record<Props["platform"], React.ReactNode> = {
   castbox: <SiCastbox />,
   pocketcasts: <SiPocketcasts />,
   youtube: <PiYoutubeLogoFill />,
+  monobank: <PiTipJarFill />,
 };
 
 const PlatformIcon: React.FC<Props> = ({ platform, size }) => (

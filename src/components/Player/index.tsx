@@ -21,7 +21,7 @@ const Player = () => {
   return (
     <Card
       isBlurred
-      className="border-none bg-background/10 dark:bg-foreground/10"
+      className="border-none bg-background/70 dark:bg-foreground/10"
       shadow="sm"
     >
       <CardBody>

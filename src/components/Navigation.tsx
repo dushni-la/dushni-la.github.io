@@ -4,22 +4,15 @@ import React from "react";
 import NextLink from "next/link";
 import {
   Navbar,
-  NavbarBrand,
   NavbarContent,
-  NavbarItem,
-  Link,
   Button,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  ModalContent,
-  Modal,
-  useDisclosure,
+  ButtonGroup,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
-import { MdAdd } from "react-icons/md";
-import PlatformLinks from "./PlatformLinks";
 import { motion } from "motion/react";
+import SubscribeButton from "./SubscribeButton";
+
+const MotionButton = motion.create(Button);
 
 const NavbarLink: React.FC<{
   currentPath: string;
@@ -29,16 +22,14 @@ const NavbarLink: React.FC<{
   const isActive =
     href === "/" ? currentPath === "/" : currentPath.includes(href);
   return (
-    <NavbarItem>
-      <Link
-        className={`${isActive ? "text-foreground border-b-4 border-warning -mb-2" : "text-foreground"}`}
-        href={href}
-        as={NextLink}
-        aria-current={isActive ? "page" : undefined}
-      >
-        {children}
-      </Link>
-    </NavbarItem>
+    <MotionButton
+      color={isActive ? "warning" : "default"}
+      href={href}
+      as={NextLink}
+      aria-current={isActive ? "page" : undefined}
+    >
+      {children}
+    </MotionButton>
   );
 };
 
@@ -46,21 +37,38 @@ const MotionNavbar = motion.create(Navbar);
 
 const Navigation = () => {
   const pathname = usePathname();
-  console.log(pathname);
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  // return (
+  //   <Tabs
+  //     aria-label="Options"
+  //     selectedKey={pathname}
+  //     variant="bordered"
+  //     color="warning"
+  //     classNames={{
+  //       base: "fixed z-50 w-full justify-center",
+  //       tabList: "bg-default-100/90 backdrop-blur-sm",
+  //     }}
+  //     onSelectionChange={(...args) => {
+  //       console.log(args);
+  //     }}
+  //   >
+  //     <Tab key="/" title="Головна" href="/" />
+  //     <Tab key="/episodes" title="Випуски" href="/episodes" />
+  //   </Tabs>
+  // );
 
   return (
     <>
-      <MotionNavbar className="bg-transparent" layout>
-        <NavbarBrand />
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarLink href="/" currentPath={pathname}>
-            ГОЛОВНА
-          </NavbarLink>
-          <NavbarLink href="/episodes" currentPath={pathname}>
-            ЕПІЗОДИ
-          </NavbarLink>
+      <MotionNavbar className="bg-transparent">
+        <NavbarContent className="flex gap-4 justify-start md:justify-center">
+          <ButtonGroup>
+            <NavbarLink href="/" currentPath={pathname}>
+              ГОЛОВНА
+            </NavbarLink>
+            <NavbarLink href="/episodes" currentPath={pathname}>
+              ЕПІЗОДИ
+            </NavbarLink>
+          </ButtonGroup>
           {/*
           <NavbarLink href="/blog" currentPath={pathname}>
             Блог
@@ -74,41 +82,9 @@ const Navigation = () => {
             */}
         </NavbarContent>
         <NavbarContent justify="end">
-          <NavbarItem>
-            <Button color="warning" onPress={onOpen}>
-              <MdAdd />
-              Підписатись
-            </Button>
-          </NavbarItem>
+          <SubscribeButton color="default" />
         </NavbarContent>
       </MotionNavbar>
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        backdrop="blur"
-        classNames={{
-          backdrop:
-            "bg-gradient-to-t dark:from-zinc-900 dark:to-zinc-900/10 backdrop-blur-md",
-        }}
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Не пропусти наступний випуск
-              </ModalHeader>
-              <ModalBody>
-                <PlatformLinks />
-              </ModalBody>
-              <ModalFooter>
-                <Button color="primary" variant="flat" onPress={onClose}>
-                  Закрити
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
     </>
   );
 };

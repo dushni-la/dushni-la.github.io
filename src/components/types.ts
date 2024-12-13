@@ -22,7 +22,8 @@ export type Platform =
   | "patreon"
   | "castbox"
   | "pocketcasts"
-  | "youtube";
+  | "youtube"
+  | "monobank";
 
 export interface Feedback {
   username: string;

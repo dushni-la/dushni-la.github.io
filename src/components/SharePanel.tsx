@@ -71,7 +71,7 @@ const SharePanel = () => (
       </Button>
     </PopoverTrigger>
     <PopoverContent className="bg-default-50">
-      <div className="flex flex-row gap-4 p-2">
+      <div className="flex flex-col md:flex-row gap-4 p-2">
         <EmailShareButton url="localhost">
           <FaEnvelope className="text-2xl text-[#0866ff]" />
         </EmailShareButton>
@@ -111,5 +111,3 @@ const SharePanel = () => (
 );
 
 export default SharePanel;
-
-// <ViberShareButton />

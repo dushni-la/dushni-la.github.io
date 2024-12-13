@@ -10,6 +10,7 @@ const PLATFORM_NAMES: Record<Platform, string> = {
   castbox: "CastBox",
   pocketcasts: "Pocket Casts",
   telegram: "Telegram",
+  monobank: "Monobank",
 };
 
 const PLATFORM_LINKS: Record<Platform, string> = {
@@ -23,27 +24,35 @@ const PLATFORM_LINKS: Record<Platform, string> = {
   pocketcasts:
     "https://play.pocketcasts.com/podcasts/share?id=ec9b4490-1b13-013a-d5bc-0acc26574db2",
   telegram: "https://t.me/dushnila_podcast",
+  monobank: "https://send.monobank.ua/jar/8BYUJvieig",
 };
 
 interface Props {
   hideLabels?: boolean;
 }
 
+export const PlatformLink: React.FC<Props & { platform: Platform }> = ({
+  hideLabels,
+  platform: p,
+}) => (
+  <Button
+    key={p}
+    radius="full"
+    className="bg-gradient-to-tr from-default-50 to-default-200 shadow-lg cursor-pointer"
+    as={"a"}
+    href={PLATFORM_LINKS[p]}
+    target="_blank"
+    isIconOnly={hideLabels}
+  >
+    <PlatformIcon platform={p} size="2xl" />
+    {!hideLabels && PLATFORM_NAMES[p]}
+  </Button>
+);
+
 const PlatformLinks: React.FC<Props> = ({ hideLabels }) => (
   <>
     {(Object.keys(PLATFORM_LINKS) as Platform[]).map((p) => (
-      <Button
-        key={p}
-        radius="full"
-        className="bg-gradient-to-tr from-default-50 to-default-200 shadow-lg cursor-pointer"
-        as={"a"}
-        href={PLATFORM_LINKS[p]}
-        target="_blank"
-        isIconOnly={hideLabels}
-      >
-        <PlatformIcon platform={p} size="2xl" />
-        {!hideLabels && PLATFORM_NAMES[p]}
-      </Button>
+      <PlatformLink platform={p} key={p} hideLabels={hideLabels} />
     ))}
   </>
 );
