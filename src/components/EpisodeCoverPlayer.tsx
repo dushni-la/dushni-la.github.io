@@ -11,7 +11,7 @@ import PlayEpisodeButton from "@/app/PlayEpisodeButton";
 const sizeToPx = {
   sm: 80,
   md: 100,
-  lg: 180,
+  lg: 280,
 };
 
 const MotionCard = motion.create(Card);
@@ -21,7 +21,9 @@ const EpisodeCoverPlayer: React.FC<{
   size: "sm" | "md" | "lg";
 }> = ({ episode, size }) => {
   return (
-    <div className="flex flex-row md:flex-col gap-4">
+    <div
+      className={`flex ${size !== "lg" ? "flex-row md:flex-col" : "flex-col self-center"} gap-4`}
+    >
       <MotionCard
         isFooterBlurred
         radius="lg"
@@ -45,7 +47,7 @@ const EpisodeCoverPlayer: React.FC<{
           </div>
         </CardBody>
       </MotionCard>
-      <div className="flex flex-1 flex-col gap-4">
+      <div className="flex flex-1 flex-col gap-4 justify-between">
         <PlayEpisodeButton
           episode={episode}
           className="text-tiny"

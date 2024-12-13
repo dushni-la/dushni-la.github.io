@@ -4,11 +4,11 @@ import NextLink from "next/link";
 import React from "react";
 import EpisodeMetadataHeader from "@/components/EpisodeMetadataHeader";
 import { Button, Card, CardBody } from "@nextui-org/react";
-import { PiReadCvLogoFill } from "react-icons/pi";
+import { PiArrowRight, PiReadCvLogoFill } from "react-icons/pi";
 
 const EpisodeItem: React.FC<{ data: Episode }> = ({ data }) => {
   return (
-    <Card isBlurred className="rounded-[1.5rem]">
+    <Card isBlurred className="rounded-[0.75rem]">
       <CardBody className="bg-background flex flex-col-reverse md:flex-col md:flex-row gap-6 group p-6">
         <EpisodeCoverPlayer episode={data} size="md" />
         <div className="flex flex-col flex-1 gap-2">
@@ -23,9 +23,9 @@ const EpisodeItem: React.FC<{ data: Episode }> = ({ data }) => {
             {data.summary.split("Support the show")[0]}
           </p>
           <Button
-            className="text-tiny mt-4"
+            className="text-tiny mt-4 self-end min-w-[100px]"
             variant="flat"
-            color="default"
+            color="primary"
             radius="lg"
             size="sm"
             as={NextLink}
@@ -33,6 +33,7 @@ const EpisodeItem: React.FC<{ data: Episode }> = ({ data }) => {
           >
             <PiReadCvLogoFill />
             Деталі
+            <PiArrowRight />
           </Button>
         </div>
       </CardBody>

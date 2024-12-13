@@ -40,7 +40,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body
-        className={`min-h-full ${ptSans.variable} ${hkGrotesque.variable} ${alegreya.variable}`}
+        className={`min-h-full overflow-x-hidden ${ptSans.variable} ${hkGrotesque.variable} ${alegreya.variable}`}
       >
         <Noise />
         <Providers>
