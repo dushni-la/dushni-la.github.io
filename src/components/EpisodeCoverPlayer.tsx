@@ -47,7 +47,7 @@ const EpisodeCoverPlayer: React.FC<{
           </div>
         </CardBody>
       </MotionCard>
-      <div className="flex flex-1 flex-col gap-4 justify-between">
+      <div className="flex flex-1 flex-col gap-4 justify-end md:justify-between">
         <PlayEpisodeButton
           episode={episode}
           className="text-tiny"

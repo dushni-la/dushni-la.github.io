@@ -9,7 +9,7 @@ import { PiArrowRight, PiReadCvLogoFill } from "react-icons/pi";
 const EpisodeItem: React.FC<{ data: Episode }> = ({ data }) => {
   return (
     <Card isBlurred className="rounded-[0.75rem]">
-      <CardBody className="bg-background flex flex-col-reverse md:flex-col md:flex-row gap-6 group p-6">
+      <CardBody className="bg-background flex flex-col md:flex-col md:flex-row gap-6 group p-6">
         <EpisodeCoverPlayer episode={data} size="md" />
         <div className="flex flex-col flex-1 gap-2">
           <EpisodeMetadataHeader episode={data} />
@@ -23,7 +23,7 @@ const EpisodeItem: React.FC<{ data: Episode }> = ({ data }) => {
             {data.summary.split("Support the show")[0]}
           </p>
           <Button
-            className="text-tiny mt-4 self-end min-w-[100px]"
+            className="text-tiny mt-4 md:self-end min-w-[100px]"
             variant="flat"
             color="primary"
             radius="lg"
