@@ -51,6 +51,12 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+          defer
+          src="https://api.pirsch.io/pa.js"
+          id="pianjs"
+          data-code="sV5tV5QICPELs7LbVUqOOckmtwwzgdVX"
+        ></script>
       </head>
       <body
         className={`min-h-full overflow-x-hidden ${ptSans.variable} ${hkGrotesque.variable} ${alegreya.variable}`}
