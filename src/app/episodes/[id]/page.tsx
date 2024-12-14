@@ -7,6 +7,8 @@ import EpisodeMetadataHeader from "@/components/EpisodeMetadataHeader";
 import TelegramComments from "./TelegramComments";
 import { getEpisode } from "../utils";
 import Head from "next/head";
+import { formatDate, formatTimeISO8601Duration } from "@/components/utils";
+import { JsonLdDocument } from "jsonld";
 
 export async function generateStaticParams() {
   const folder = await readdir(path.join(process.cwd(), "output"));
@@ -63,6 +65,30 @@ export default async function EpisodePage({
 }) {
   const id = (await params).id;
   const episode = await getEpisode(id);
+
+  const jsonLd: JsonLdDocument = {
+    "@context": "https://schema.org/",
+    "@type": "PodcastEpisode",
+    url: `https://dushni.la/episodes/${id}`,
+    name: `#${episode.episode}: ${episode.title}`,
+    datePublished: formatDate(episode.pub_date),
+    timeRequired: formatTimeISO8601Duration(+episode.duration),
+    description: episode.summary.split("Support the show")[0],
+    associatedMedia: {
+      "@type": "MediaObject",
+      contentUrl: episode.audio_url,
+    },
+    author: {
+      "@type": "Person",
+      givenName: "Ігор",
+      familyName: "Кузьменко",
+    },
+    partOfSeries: {
+      "@type": "PodcastSeries",
+      name: "Душніла",
+      url: "https://dushni.la",
+    },
+  };
 
   return (
     <>
@@ -121,6 +147,14 @@ export default async function EpisodePage({
           </>
         )}
       </div>
+      <section>
+        {/* JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* ... */}
+      </section>
     </>
   );
 }
