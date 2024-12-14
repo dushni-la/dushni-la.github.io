@@ -1,7 +1,6 @@
 "use client";
 
 import { Card, CardBody, semanticColors } from "@nextui-org/react";
-import Script from "next/script";
 import { useEffect, useState } from "react";
 
 const TelegramComments: React.FC<{ id: number | string }> = ({ id }) => {
