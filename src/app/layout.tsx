@@ -57,6 +57,11 @@ export default function RootLayout({
           id="pianjs"
           data-code="sV5tV5QICPELs7LbVUqOOckmtwwzgdVX"
         ></script>
+        <script
+          data-collect-dnt="true"
+          async
+          src="https://scripts.simpleanalyticscdn.com/latest.js"
+        ></script>
       </head>
       <body
         className={`min-h-full overflow-x-hidden ${ptSans.variable} ${hkGrotesque.variable} ${alegreya.variable}`}
