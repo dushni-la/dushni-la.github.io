@@ -50,7 +50,12 @@ const EpisodeCoverPlayer: React.FC<{
           playTitle="Слухати"
           pauseTitle="Пауза"
         />
-        <SharePanel />
+        <SharePanel
+          url={`https://dushni.la/episodes/${episode.guid}`}
+          imageUrl={episode.image || `https://dushni.la/og_image.png`}
+          title={`${episode.title}`}
+          text="Гадаю, вам сподобається цей подкаст."
+        />
       </div>
     </div>
   );

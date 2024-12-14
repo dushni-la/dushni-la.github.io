@@ -31,7 +31,17 @@ import {
   WhatsappShareButton,
 } from "react-share";
 
-const SharePanel = () => (
+const SharePanel = ({
+  url,
+  imageUrl,
+  title,
+  text,
+}: {
+  url: string;
+  imageUrl: string;
+  title?: string;
+  text?: string;
+}) => (
   <Popover
     motionProps={{
       variants: {
@@ -72,38 +82,43 @@ const SharePanel = () => (
     </PopoverTrigger>
     <PopoverContent className="bg-default-50">
       <div className="flex flex-col md:flex-row gap-4 p-2">
-        <EmailShareButton url="localhost">
+        <EmailShareButton url={url} subject={title} body={text}>
           <FaEnvelope className="text-2xl text-[#0866ff]" />
         </EmailShareButton>
-        <FacebookShareButton url="localhost">
+        <FacebookShareButton url={url}>
           <FaFacebook className="text-2xl text-[#0866ff]" />
         </FacebookShareButton>
-        <PinterestShareButton url="localhost" media="arst" className="">
+        <PinterestShareButton url={url} media={imageUrl} className="">
           <FaPinterest className="text-2xl text-[#e60122]" />
         </PinterestShareButton>
-        <TelegramShareButton url="localhost" className="">
+        <TelegramShareButton url={url} title={title} className="">
           <FaTelegram className="text-2xl text-[#24a9e9]" />
         </TelegramShareButton>
         <Link
           target="_blank"
-          href="https://threads.net/intent/post?text=localhost"
+          href={`https://threads.net/intent/post?text=${text} ${title}: ${url}`}
         >
-          <FaThreads className="text-2xl text-[#24a9e9]" />
+          <FaThreads className="text-2xl text-[black]" />
         </Link>
-        <PocketShareButton url="localhost" className="">
-          <FaGetPocket className="text-2xl text-[#24a9e9]" />
+        <PocketShareButton url={url} title={title} className="">
+          <FaGetPocket className="text-2xl text-[#f50157]" />
         </PocketShareButton>
-        <TwitterShareButton url="localhost" className="">
-          <FaSquareXTwitter className="text-2xl text-[#24a9e9]" />
+        <TwitterShareButton
+          url={url}
+          title={title}
+          hashtags={["філософія", "подкаст", "душніла"]}
+          className=""
+        >
+          <FaSquareXTwitter className="text-2xl text-[black]" />
         </TwitterShareButton>
-        <RedditShareButton url="localhost" className="">
-          <FaReddit className="text-2xl text-[#24a9e9]" />
+        <RedditShareButton url={url} title={title} className="">
+          <FaReddit className="text-2xl text-[#fa3b0a]" />
         </RedditShareButton>
-        <WhatsappShareButton url="localhost" className="">
-          <FaWhatsapp className="text-2xl text-[#24a9e9]" />
+        <WhatsappShareButton url={url} title={text} className="">
+          <FaWhatsapp className="text-2xl text-[#4dc159]" />
         </WhatsappShareButton>
-        <ViberShareButton url="localhost" className="">
-          <FaViber className="text-2xl text-[#24a9e9]" />
+        <ViberShareButton url={url} title={text} className="">
+          <FaViber className="text-2xl text-[#6f5ceb]" />
         </ViberShareButton>
       </div>
     </PopoverContent>
