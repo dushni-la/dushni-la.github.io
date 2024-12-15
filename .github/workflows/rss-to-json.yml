@@ -17,58 +17,26 @@ jobs:
         run: |
           curl -sSL $RSS_FEED -o rss-feed.xml
 
-      - name: Parse RSS and generate JSON files
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Parse RSS feed into JSON
         run: |
-          # Create an output directory
-          mkdir -p output
-
-          # Parse the RSS feed using a simple Python script
-          python3 - <<EOF
-import os
-import json
-import xml.etree.ElementTree as ET
-
-# Load the RSS feed
-tree = ET.parse('rss-feed.xml')
-root = tree.getroot()
-
-# Define namespaces (adjust if your RSS uses different namespaces)
-namespaces = {
-    'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd',
-    'content': 'http://purl.org/rss/1.0/modules/content/',
-}
-
-# Find all items in the feed
-for item in root.findall('./channel/item', namespaces):
-    # Extract fields
-    guid = item.find('guid').text.split('-')[-1]  # Extract GUID suffix
-    title = item.find('title').text
-    author = item.find('itunes:author', namespaces).text if item.find('itunes:author', namespaces) else ''
-    summary = item.find('itunes:summary', namespaces).text if item.find('itunes:summary', namespaces) else ''
-    description = item.find('description').text if item.find('description') else ''
-    pub_date = item.find('pubDate').text
-    enclosure = item.find('enclosure').attrib.get('url') if item.find('enclosure') is not None else ''
-    duration = item.find('itunes:duration', namespaces).text if item.find('itunes:duration', namespaces) else ''
-
-    # Create JSON data
-    data = {
-        "guid": guid,
-        "title": title,
-        "author": author,
-        "summary": summary,
-        "description": description,
-        "pub_date": pub_date,
-        "audio_url": enclosure,
-        "duration": duration,
-    }
-
-    # Save JSON file
-    json_filename = f"output/{guid}.json"
-    with open(json_filename, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
-
-print("RSS feed converted to JSON files in 'output' directory.")
-EOF
+          bun run scripts/parseRSS.ts
 
       - name: Commit and push JSON files
         run: |

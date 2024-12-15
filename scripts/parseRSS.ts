@@ -1,5 +1,8 @@
 import { parseStringPromise } from "xml2js";
 import path from "path";
+import { stat } from "node:fs/promises";
+import { ins } from "framer-motion/client";
+import { inspect } from "bun";
 
 // Function to parse RSS feed
 async function parseRSS(rssFilePath: string, outputDir: string) {
@@ -46,8 +49,15 @@ async function parseRSS(rssFilePath: string, outputDir: string) {
 
       // Write JSON file
       const outputFilePath = path.join(outputDir, `${guid}.json`);
-      await Bun.write(outputFilePath, JSON.stringify(data, null, 2));
-      console.log(`Created: ${outputFilePath}`);
+      try {
+        await stat(outputFilePath);
+      } catch (e) {
+        if ((e as { code: string }).code === "ENOENT") {
+          console.log("doesnt exist");
+          await Bun.write(outputFilePath, JSON.stringify(data, null, 2));
+          console.log(`Created: ${outputFilePath}`);
+        }
+      }
     }
   } catch (error) {
     console.error("Error parsing RSS feed:", error);
