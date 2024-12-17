@@ -6,7 +6,6 @@ import EpisodeCoverPlayer from "@/components/EpisodeCoverPlayer";
 import EpisodeMetadataHeader from "@/components/EpisodeMetadataHeader";
 import TelegramComments from "./TelegramComments";
 import { getEpisode } from "../utils";
-import Head from "next/head";
 import { formatDate, formatTimeISO8601Duration } from "@/components/utils";
 import { JsonLdDocument } from "jsonld";
 
@@ -28,6 +27,9 @@ export async function generateMetadata({
   return {
     title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
     description: episode.summary,
+    alternates: {
+      canonical: `https://dushni.la/episodes/${id}`,
+    },
     openGraph: {
       title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
       description: episode.summary,
@@ -92,13 +94,6 @@ export default async function EpisodePage({
 
   return (
     <>
-      <Head>
-        <link
-          rel="canonical"
-          href={`https://dushni.la/episodes/${id}`}
-          key="canonical"
-        />
-      </Head>
       <div className="flex flex-col gap-4 p-4 lg:p-10 pt-8">
         <div className="flex flex-col md:flex-row gap-8">
           <EpisodeCoverPlayer episode={episode} size="lg" />

@@ -7,6 +7,14 @@ import Noise from "@/components/Noise";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
   keywords: [
     "подкаст українською",
     "епізоди Душніла",

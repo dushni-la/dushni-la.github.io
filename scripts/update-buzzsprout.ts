@@ -1,3 +1,6 @@
+// API docs:
+// https://github.com/Buzzsprout/buzzsprout-api
+
 const API_KEY = "";
 const PODCAST_ID = "1879550";
 
