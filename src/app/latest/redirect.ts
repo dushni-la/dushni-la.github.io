@@ -1,9 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-const Redirect: React.FC<{ id: number }> = ({ id }) => {
+const Redirect: React.FC<{ id: number; slug?: string }> = ({ id, slug }) => {
   const router = useRouter();
-  router.push(`/episodes/${id}`);
+  router.replace(`/episodes/${id}/${slug}`);
 
   return null;
 };

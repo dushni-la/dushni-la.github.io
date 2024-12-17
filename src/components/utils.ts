@@ -1,3 +1,5 @@
+import slugify from "slugify";
+
 export const formatTime = (seconds?: number | null): string => {
   // Ensure seconds is a valid number
   if (!seconds || seconds === null || isNaN(seconds) || seconds < 0) {
@@ -36,4 +38,12 @@ export function formatDate(input: string): string {
   const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
+}
+
+export function getSlug(input: string): string {
+  return slugify(input, {
+    lower: true,
+    strict: true,
+    locale: "uk",
+  });
 }

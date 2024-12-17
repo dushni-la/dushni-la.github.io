@@ -5,6 +5,7 @@ import React from "react";
 import EpisodeMetadataHeader from "@/components/EpisodeMetadataHeader";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { PiArrowRight, PiReadCvLogoFill } from "react-icons/pi";
+import { getSlug } from "./utils";
 
 const EpisodeItem: React.FC<{ data: Episode }> = ({ data }) => {
   return (
@@ -14,7 +15,7 @@ const EpisodeItem: React.FC<{ data: Episode }> = ({ data }) => {
         <div className="flex flex-col flex-1 gap-2">
           <EpisodeMetadataHeader episode={data} />
           <NextLink
-            href={`/episodes/${data.guid}`}
+            href={`/episodes/${data.guid}/${getSlug(data.title)}`}
             className="text-foreground hover:text-primary-700"
           >
             <h3 className="dark:text-default-700 text-xl">{data.title}</h3>
