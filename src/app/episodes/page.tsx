@@ -3,40 +3,31 @@ import EpisodeItem from "@/components/EpisodeItem";
 import { getEpisodes } from "./utils";
 import Section from "@/components/Section";
 import { Image } from "@nextui-org/react";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 
-export async function generateMetadata({
-  parent,
-}: {
-  parent: ResolvingMetadata;
-}): Promise<Metadata> {
-  const keywords = (await parent).keywords || [];
-
-  return {
+export const metadata: Metadata = {
+  title:
+    "Всі епізоди подкасту Душніла | Душніла — подкаст про філософію, психологію та самоаналіз.",
+  description:
+    "Ознайомся з усіма епізодами подкасту Душніла. Психологія, філософія, самоаналіз та життєві історії. Обери свій улюблений випуск!",
+  alternates: {
+    canonical: `https://dushni.la/episodes`,
+  },
+  openGraph: {
+    type: "website",
+    url: "https://dushni.la/episodes",
     title:
       "Всі епізоди подкасту Душніла | Душніла — подкаст про філософію, психологію та самоаналіз.",
     description:
       "Ознайомся з усіма епізодами подкасту Душніла. Психологія, філософія, самоаналіз та життєві історії. Обери свій улюблений випуск!",
-    alternates: {
-      canonical: `https://dushni.la/episodes`,
-    },
-    keywords,
-    openGraph: {
-      type: "website",
-      url: "https://dushni.la/episodes",
-      title:
-        "Всі епізоди подкасту Душніла | Душніла — подкаст про філософію, психологію та самоаналіз.",
-      description:
-        "Ознайомся з усіма епізодами подкасту Душніла. Психологія, філософія, самоаналіз та життєві історії. Обери свій улюблений випуск!",
-      images: [
-        {
-          url: "https://dushni.la/og_image.png",
-          alt: "Обкладинка подкасту Душніла",
-        },
-      ],
-    },
-  };
-}
+    images: [
+      {
+        url: "https://dushni.la/og_image.png",
+        alt: "Обкладинка подкасту Душніла",
+      },
+    ],
+  },
+};
 
 const EpisodesPage: React.FC = async () => {
   const episodes = await getEpisodes();

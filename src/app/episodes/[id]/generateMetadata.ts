@@ -1,25 +1,19 @@
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import { getEpisode } from "../utils";
 
 export async function generateMetadata({
   params,
-  parent,
 }: {
   params: Promise<{ id: string }>;
-  parent: ResolvingMetadata;
 }): Promise<Metadata> {
   const { id } = await params;
   const episode = await getEpisode(id);
-
-  const keywords = (await parent).keywords || [];
-
   return {
     title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
     description: episode.summary,
     alternates: {
       canonical: `https://dushni.la/episodes/${id}`,
     },
-    keywords,
     openGraph: {
       title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
       description: episode.summary,
