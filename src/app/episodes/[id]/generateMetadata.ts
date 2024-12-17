@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { getEpisode } from "../utils";
-import { getSlug } from "@/components/utils";
 
 export async function generateMetadata({
   params,
@@ -13,7 +12,7 @@ export async function generateMetadata({
     title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
     description: episode.summary,
     alternates: {
-      canonical: `https://dushni.la/episodes/${id}/${getSlug(episode.title)}`,
+      canonical: `https://dushni.la/episodes/${id}`,
     },
     openGraph: {
       title: `${episode.title} — Душніла: філософія, психологія, самоаналіз`,
