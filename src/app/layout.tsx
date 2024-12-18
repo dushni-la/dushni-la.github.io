@@ -5,6 +5,7 @@ import Player from "@/components/Player";
 import Footer from "@/components/Footer";
 import Noise from "@/components/Noise";
 import type { Metadata } from "next";
+import Navigation from "@/components/Navigation";
 
 export const metadata: Metadata = {
   robots: {
@@ -77,9 +78,10 @@ export default function RootLayout({
         <Noise />
         <Providers>
           <div className="flex flex-col w-full min-h-screen">
-            {children}
+            <Navigation />
+            <main className="flex-auto overflow-x-hidden">{children}</main>
             <Footer />
-            <div className="fixed bottom-0 left-0 md:bottom-8 md:left-8 md:w-[26rem] z-50">
+            <div className="fixed bottom-0 left-0 right-0 md:bottom-8 md:left-8 md:w-[26rem] z-50">
               <Player />
             </div>
           </div>

@@ -6,15 +6,13 @@ import { PlayerProvider } from "./Player/PlayerContext";
 import { useEffect } from "react";
 
 function ForceThemeProvider({ children }: { children: React.ReactNode }) {
-  const { theme, resolvedTheme, systemTheme, setTheme } = useTheme();
+  const { resolvedTheme, systemTheme, setTheme } = useTheme();
 
   useEffect(() => {
     if (systemTheme && systemTheme !== resolvedTheme) {
       setTheme(systemTheme);
     }
   }, [systemTheme, resolvedTheme, setTheme]);
-
-  console.log(theme, resolvedTheme);
 
   return children;
 }

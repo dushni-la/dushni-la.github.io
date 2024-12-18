@@ -5,7 +5,7 @@ import { Image } from "@nextui-org/react";
 import { Episode } from "@/components/types";
 import SharePanel from "@/components/SharePanel";
 
-import PlayEpisodeButton from "@/app/PlayEpisodeButton";
+import PlayEpisodeButton from "@/components/PlayEpisodeButton";
 
 const sizeToPx = {
   sm: 80,

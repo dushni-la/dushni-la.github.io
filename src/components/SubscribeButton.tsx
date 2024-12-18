@@ -11,18 +11,44 @@ import {
 } from "@nextui-org/react";
 import { MdAdd } from "react-icons/md";
 import PlatformLinks from "./PlatformLinks";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect } from "react";
 
-const SubscribeButton = (props: ButtonProps) => {
+type Props = ButtonProps & { autoOpen?: boolean };
+
+const SuspensedSubscribeButton = (props: Props) => {
+  const { autoOpen = false, ...rest } = props;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const query = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const isSubscribeOpen = query.get("follow");
+
+  useEffect(() => {
+    if (!!isSubscribeOpen && autoOpen) {
+      onOpen();
+    }
+  }, [autoOpen, isSubscribeOpen, onOpen]);
+
+  const handleOpenChange = (val: boolean) => {
+    if (val === false && autoOpen && !!isSubscribeOpen) {
+      router.replace(pathname);
+    }
+    onOpenChange();
+  };
+
   return (
     <>
-      <Button color="warning" {...props} onPress={onOpen}>
+      <Button color="warning" {...rest} onPress={onOpen}>
         <MdAdd />
         Підписатись
       </Button>
       <Modal
+        itemID="subscribe-modal"
+        id="subscribe-modal"
         isOpen={isOpen}
-        onOpenChange={onOpenChange}
+        onOpenChange={handleOpenChange}
         backdrop="blur"
         classNames={{
           backdrop:
@@ -48,6 +74,14 @@ const SubscribeButton = (props: ButtonProps) => {
         </ModalContent>
       </Modal>
     </>
+  );
+};
+
+const SubscribeButton = (props: Props) => {
+  return (
+    <Suspense>
+      <SuspensedSubscribeButton {...props} />
+    </Suspense>
   );
 };
 
