@@ -30,6 +30,7 @@ jobs:
       - name: Fetch posts from Notion
         env: # Or as an environment variable
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: |
           bun --print process.env
           bun run scripts/fetchBlog.mts
