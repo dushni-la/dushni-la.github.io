@@ -150,7 +150,7 @@ export default async function Post({
               <div className="my-[3rem]">
                 <Image
                   isBlurred
-                  className="mb-2"
+                  className="mb-2 max-h-[30rem]"
                   alt={props.alt || ""}
                   {...props}
                 />
