@@ -23,9 +23,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # JOB to run change detection
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      content_changed: ${{ steps.filter.outputs.content_changed }}
+    steps:
+    - uses: dorny/paths-filter@v3
+      id: filter
+      with:
+        filters: |
+          content_changed:
+            - 'src/**'
+            - 'public/**'
+            - 'posts/**'
+            - 'output/**'
+
   # Build job
   build:
     runs-on: ubuntu-latest
+    needs: changes
+    if: ${{ needs.changes.outputs.content_changed == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
