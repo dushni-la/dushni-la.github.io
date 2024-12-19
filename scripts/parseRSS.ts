@@ -1,8 +1,6 @@
 import { parseStringPromise } from "xml2js";
 import path from "path";
 import { stat } from "node:fs/promises";
-import { ins } from "framer-motion/client";
-import { inspect } from "bun";
 
 // Function to parse RSS feed
 async function parseRSS(rssFilePath: string, outputDir: string) {

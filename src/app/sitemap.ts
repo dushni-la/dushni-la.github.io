@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getEpisodes } from "./episodes/utils";
 import { getSlug } from "@/components/utils";
+import { getPosts } from "./blog/utils";
 
 const BASE_URL = "https://dushni.la";
 
@@ -17,6 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/episodes`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/blog`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
@@ -41,5 +48,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]);
 
-  return [...routes, ...episodeRoutes].flat();
+  const posts = await getPosts();
+  const postRoutes: MetadataRoute.Sitemap[] = posts.map((post) => [
+    {
+      url: `${BASE_URL}/blog/${post.slug}`,
+      priority: 0.8,
+      lastModified: new Date(post.last_edited_time).toISOString(),
+      changeFrequency: "weekly",
+      images: post.cover ? [post.cover] : undefined,
+    },
+  ]);
+
+  return [...routes, ...episodeRoutes, ...postRoutes].flat();
 }

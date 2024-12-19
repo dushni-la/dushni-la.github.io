@@ -42,6 +42,7 @@ const MotionNavbar = motion.create(Navbar);
 const ROUTES = {
   "/": "ГОЛОВНА",
   "/episodes": "ЕПІЗОДИ",
+  "/blog": "БЛОГ",
   "/about": "ПРО АВТОРА",
   // "/feedback": "ВІДГУКИ",
 };

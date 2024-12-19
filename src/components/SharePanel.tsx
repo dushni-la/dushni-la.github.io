@@ -5,6 +5,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  ButtonProps,
 } from "@nextui-org/react";
 import Link from "next/link";
 import {
@@ -36,12 +37,13 @@ const SharePanel = ({
   imageUrl,
   title,
   text,
+  ...buttonProps
 }: {
   url: string;
   imageUrl: string;
   title?: string;
   text?: string;
-}) => (
+} & ButtonProps) => (
   <Popover
     motionProps={{
       variants: {
@@ -75,12 +77,13 @@ const SharePanel = ({
         color="primary"
         radius="lg"
         size="sm"
+        {...buttonProps}
       >
         <PiShareFat />
         Поділитись
       </Button>
     </PopoverTrigger>
-    <PopoverContent className="bg-default-50">
+    <PopoverContent className="bg-zinc-50">
       <div className="flex flex-col md:flex-row gap-4 p-2">
         <EmailShareButton url={url} subject={title} body={text}>
           <FaEnvelope className="text-2xl text-[#0866ff]" />
