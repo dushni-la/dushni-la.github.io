@@ -2,7 +2,7 @@
   "object": "page",
   "id": "16070830-d845-8011-a4f5-f0e86432d2d8",
   "created_time": "2024-12-18T16:57:00.000Z",
-  "last_edited_time": "2024-12-19T12:55:00.000Z",
+  "last_edited_time": "2024-12-19T20:43:00.000Z",
   "created_by": {
     "object": "user",
     "id": "fb337067-9456-4ff8-b9c8-39097073a59a"
@@ -20,6 +20,15 @@
   "archived": false,
   "in_trash": false,
   "properties": {
+    "Дата публікації": {
+      "id": "Wd%7Bj",
+      "type": "date",
+      "date": {
+        "start": "2024-12-16",
+        "end": null,
+        "time_zone": null
+      }
+    },
     "Telegram": {
       "id": "%5BADx",
       "type": "url",
@@ -28,7 +37,7 @@
     "Редагувалось": {
       "id": "%5Bu%60%5C",
       "type": "last_edited_time",
-      "last_edited_time": "2024-12-19T12:55:00.000Z"
+      "last_edited_time": "2024-12-19T20:43:00.000Z"
     },
     "Опис": {
       "id": "g%60Mv",
