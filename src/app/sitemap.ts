@@ -2,8 +2,7 @@ import type { MetadataRoute } from "next";
 import { getEpisodes } from "./episodes/utils";
 import { getSlug } from "@/components/utils";
 import { getPosts } from "./blog/utils";
-
-const BASE_URL = "https://dushni.la";
+import { BASE_URL } from "@/constants";
 
 export const dynamic = "force-static"; // ⚠️ This ensures static generation
 export const revalidate = false; // 🚫 No revalidation because of static export

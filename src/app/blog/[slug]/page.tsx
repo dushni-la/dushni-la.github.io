@@ -6,6 +6,54 @@ import { formatDate } from "@/components/utils";
 import rehypeUnwrapImages from "rehype-unwrap-images";
 import SharePanel from "@/components/SharePanel";
 import PostJsonLd from "./PostJsonLd";
+import { Metadata } from "next";
+import { BASE_URL } from "@/constants";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  const img = post.cover
+    ? post.cover.startsWith("/")
+      ? `${BASE_URL}${post.cover}`
+      : post.cover
+    : undefined;
+  const description = post.properties.Опис.rich_text[0].plain_text;
+
+  return {
+    title: `${post.title} — Душніла: філософія, психологія, самоаналіз`,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/blog/${slug}`,
+    },
+    openGraph: {
+      title: `${post.title} — Душніла: філософія, психологія, самоаналіз`,
+      description,
+      type: "article",
+      url: `${BASE_URL}/blog/${slug}`,
+      images: [
+        {
+          url: img || "https://dushni.la/og_image.png",
+          alt: `Обкладинка епізоду ${post.title}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary",
+      title: `${post.title} — Душніла: філософія, психологія, самоаналіз`,
+      description,
+      images: [
+        {
+          url: img || "https://dushni.la/og_image.png",
+          alt: `Обкладинка епізоду ${post.title}`,
+        },
+      ],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const posts = await getPosts();
