@@ -28,6 +28,8 @@ jobs:
         run: bun install
 
       - name: Fetch posts from Notion
+        env: # Or as an environment variable
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: |
           bun run scripts/fetchBlog.mts
 
