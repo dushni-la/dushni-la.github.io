@@ -1,7 +1,7 @@
 // API docs:
 // https://github.com/Buzzsprout/buzzsprout-api
 
-const API_KEY = "";
+const TOKEN = process.env.BUZZSPROUT_TOKEN;
 const PODCAST_ID = "1879550";
 
 const createRequest = (
@@ -12,7 +12,7 @@ const createRequest = (
   fetch(`https://www.buzzsprout.com/api/${PODCAST_ID}/${subpath}.json`, {
     method,
     headers: {
-      Authorization: `Token token=${API_KEY}`,
+      Authorization: `Token token=${TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
