@@ -6,7 +6,6 @@ import { MdBlock } from "notion-to-md/build/types";
 
 const databaseId = process.env.NOTION_DATABASE_ID as string;
 const outputDir = "posts";
-const outputImgDir = "public/blog";
 
 // Initializing a client
 const notion = new Client({
@@ -49,10 +48,10 @@ async function processBlocks(content: MdBlock[], slug: string) {
  * Extracts the image URL from the markdown syntax inside the `parent` string.
  * Example: ![alt](https://example.com/image.png)
  */
-function extractImageUrl(parent: string): [string, string] | null {
+function extractImageUrl(parent: string): (string | null)[] {
   const alt = parent.match(/^!\[(.*)\]\(/);
   const match = parent.match(/\((https?:\/\/[^\)]+)\)/);
-  return match ? [alt ? alt[1] : "", match[1]] : null;
+  return match ? [alt ? alt[1] : "", match[1]] : [null, null];
 }
 
 /**

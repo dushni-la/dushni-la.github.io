@@ -49,5 +49,6 @@ jobs:
           git push
 
   build-and-deploy:
+    needs: fetch
     uses: dushni-la/dushni-la.github.io/.github/workflows/build-and-deploy.yml@trunk
 
