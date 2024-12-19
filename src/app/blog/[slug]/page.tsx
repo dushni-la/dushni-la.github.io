@@ -71,6 +71,12 @@ export default async function Post({
   const { slug } = await params;
   const post = await getPost(slug);
 
+  const img = post.cover
+    ? post.cover.startsWith("/")
+      ? `${BASE_URL}${post.cover}`
+      : post.cover
+    : undefined;
+
   return (
     <>
       <div className="my-[0rem] md:my-[4rem] p-8 md:p-0">
@@ -85,8 +91,10 @@ export default async function Post({
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8">
               <small>{formatDate(post.last_edited_time)}, Ігор Кузьменко</small>
               <SharePanel
-                url={`https://dushni.la/blog/${slug}`}
-                imageUrl=""
+                url={`${BASE_URL}/blog/${slug}`}
+                imageUrl={img || ""}
+                title={`${post.title}`}
+                text="Гадаю, вам сподобається цей допис."
                 variant="solid"
                 color="warning"
               />
@@ -154,12 +162,12 @@ export default async function Post({
         <Divider />
         <div className="flex flex-1 mt-4">
           <SharePanel
-            url={`https://dushni.la/blog/${slug}`}
-            imageUrl={post.cover || ""}
-            className="w-full"
-            fullWidth
+            url={`${BASE_URL}/blog/${slug}`}
+            imageUrl={img || ""}
             title={`${post.title}`}
             text="Гадаю, вам сподобається цей допис."
+            className="w-full"
+            fullWidth
             size="lg"
           />
         </div>
