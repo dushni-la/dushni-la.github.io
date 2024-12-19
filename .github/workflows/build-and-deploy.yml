@@ -23,21 +23,24 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # JOB to run change detection
+  # Job to run change detection
   changes:
     runs-on: ubuntu-latest
     outputs:
       content_changed: ${{ steps.filter.outputs.content_changed }}
     steps:
-    - uses: dorny/paths-filter@v3
-      id: filter
-      with:
-        filters: |
-          content_changed:
-            - 'src/**'
-            - 'public/**'
-            - 'posts/**'
-            - 'output/**'
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check for relevant changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            content_changed:
+              - 'src/**'
+              - 'public/**'
+              - 'posts/**'
+              - 'output/**'
 
   # Build job
   build:
@@ -59,10 +62,11 @@ jobs:
           path: |
             .next/cache
           # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
       - name: Install dependencies
         run: bun install
       - name: Build with Next.js
