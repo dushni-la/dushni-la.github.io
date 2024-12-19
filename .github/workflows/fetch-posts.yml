@@ -44,6 +44,6 @@ jobs:
           git commit -m "Sync with Notion" || echo "No changes to commit"
           git push
 
-      - name: Run deployment workflow
-        uses: dushni-la/dushni-la.github.io/.github/workflows/build-and-deploy.yml@main
+  build-and-deploy:
+    uses: dushni-la/dushni-la.github.io/.github/workflows/build-and-deploy.yml@main
 
