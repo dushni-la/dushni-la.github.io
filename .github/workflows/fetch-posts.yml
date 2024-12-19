@@ -45,5 +45,5 @@ jobs:
           git push
 
   build-and-deploy:
-    uses: dushni-la/dushni-la.github.io/.github/workflows/build-and-deploy.yml@main
+    uses: dushni-la/dushni-la.github.io/.github/workflows/build-and-deploy.yml@trunk
 
