@@ -89,7 +89,12 @@ export default async function Post({
           <div className="p-4 md:p-8 rounded-[0.75rem] backdrop-blur-sm bg-zinc-900/20">
             <h1 className="text-4xl md:text-5xl leading-1">{post.title}</h1>
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8">
-              <small>{formatDate(post.last_edited_time)}, Ігор Кузьменко</small>
+              <small>
+                {formatDate(
+                  post.properties["Дата публікації"].date.start || "",
+                )}
+                , Ігор Кузьменко
+              </small>
               <SharePanel
                 url={`${BASE_URL}/blog/${slug}`}
                 imageUrl={img || ""}

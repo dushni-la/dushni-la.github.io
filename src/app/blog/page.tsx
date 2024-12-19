@@ -51,7 +51,12 @@ const PostItem = ({ post }: { post: Post }) => {
           >
             <div className="p-4 rounded-[0.75rem] backdrop-blur-sm bg-zinc-900/20">
               <h1 className="text-3xl leading-1">{post.title}</h1>
-              <small>{formatDate(post.last_edited_time)}, Ігор Кузьменко</small>
+              <small>
+                {formatDate(
+                  post.properties["Дата публікації"].date.start || "",
+                )}
+                , Ігор Кузьменко
+              </small>
             </div>
           </div>
         </CardHeader>
@@ -70,14 +75,14 @@ const PostItem = ({ post }: { post: Post }) => {
   );
 };
 
+const getPublishDate = (post: Post) =>
+  new Date(post.properties["Дата публікації"].date.start || 0);
+
 export default async function Blog() {
   const posts = await getPosts();
 
   const sortedPosts = posts.sort((a, b) => {
-    return (
-      new Date(b.last_edited_time).getTime() -
-      new Date(a.last_edited_time).getTime()
-    );
+    return getPublishDate(b).getTime() - getPublishDate(a).getTime();
   });
 
   const latest = sortedPosts[0];

@@ -86,6 +86,16 @@ interface PropertyTitle {
   title: Text[];
 }
 
+interface PropertyDate {
+  id: string;
+  type: "date";
+  date: {
+    start: string | null;
+    end: string | null;
+    time_zone: string | null;
+  };
+}
+
 interface PropertyUrl {
   id: string;
   type: "url";
@@ -104,6 +114,7 @@ interface Properties {
   Опис: PropertyText;
   Опубліковано: PropertyCheckbox;
   Редагувалось: PropertyLastEditedTime;
+  "Дата публікації": PropertyDate;
 }
 
 interface Content {
