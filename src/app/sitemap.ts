@@ -55,7 +55,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
       lastModified: new Date(post.last_edited_time).toISOString(),
       changeFrequency: "weekly",
-      images: post.cover ? [post.cover] : undefined,
+      images: post.cover
+        ? [post.cover.startsWith("/") ? `${BASE_URL}${post.cover}` : post.cover]
+        : undefined,
     },
   ]);
 
