@@ -3,6 +3,10 @@ name: Fetch posts from Notion
 on:
   workflow_dispatch:
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
