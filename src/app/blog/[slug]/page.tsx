@@ -116,27 +116,31 @@ export default async function Post({
                 {...props}
               />
             ),
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            hr: ({ ref, ...props }) => (
+              <Divider className="h-1 my-[2rem]" {...props} />
+            ),
             h1: (props) => (
               <h1
-                className="leading-[2rem] md:leading-[4rem] text-4xl mt-[2rem] mb-[0.75rem]"
+                className="leading-[2rem] md:leading-[3rem] text-4xl mt-[2rem] mb-[0.75rem]"
                 {...props}
               />
             ),
             h2: (props) => (
               <h2
-                className="leading-[2rem] md:leading-[4rem] text-3xl mt-[2rem] mb-[0.75rem]"
+                className="leading-[2rem] md:leading-[3rem] text-3xl mt-[2rem] mb-[0.75rem]"
                 {...props}
               />
             ),
             h3: (props) => (
               <h3
-                className="leading-[2rem] md:leading-[4rem] text-2xl mt-[2rem] mb-[0.75rem]"
+                className="leading-[2rem] md:leading-[3rem] text-2xl mt-[2rem] mb-[0.75rem]"
                 {...props}
               />
             ),
             h4: (props) => (
               <h4
-                className="leading-[2rem] md:leading-[4rem] text-xl mt-[2rem] mb-[0.75rem]"
+                className="leading-[2rem] md:leading-[3rem] text-xl mt-[2rem] mb-[0.75rem]"
                 {...props}
               />
             ),
@@ -147,14 +151,16 @@ export default async function Post({
             ),
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             img: ({ ref: _ref, onError: _onError, ...props }) => (
-              <div className="my-[3rem]">
-                <Image
-                  isBlurred
-                  className="mb-2 max-h-[30rem]"
-                  alt={props.alt || ""}
-                  {...props}
-                />
-                <small>{props.alt}</small>
+              <div className="my-[3rem] w-full flex justify-center">
+                <div className="">
+                  <Image
+                    isBlurred
+                    className="mb-2 max-h-[30rem]"
+                    alt={props.alt || ""}
+                    {...props}
+                  />
+                  <small>{props.alt}</small>
+                </div>
               </div>
             ),
           }}

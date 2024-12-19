@@ -148,7 +148,7 @@ export default {
             },
             focus: "#ffde59",
             overlay: "#000000",
-            divider: "#111111",
+            divider: "#d5e1eb",
           },
         },
         dark: {
@@ -256,7 +256,7 @@ export default {
             },
             focus: "#ffde59",
             overlay: "#ffffff",
-            divider: "#ffffff",
+            divider: "#10202d",
           },
         },
       },

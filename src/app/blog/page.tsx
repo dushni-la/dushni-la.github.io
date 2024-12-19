@@ -89,7 +89,7 @@ export default async function Blog() {
   const rest = sortedPosts.slice(0);
 
   return (
-    <div className="flex flex-col gap-8 md:gap-16 w-full">
+    <div className="flex flex-col gap-8 md:gap-16 w-full md:w-[61rem]">
       <div className="relative p-2 pt-6 md:p-4 lg:p-10 rounded-[1rem] shadow-lg bg-gradient-to-b from-yellow-500 dark:from-warning-100 to-yellow-900 dark:to-warning-900 text-white mt-4 self-center w-full md:w-[40rem] lg:w-[61rem]">
         <Section
           title="Новий допис"
