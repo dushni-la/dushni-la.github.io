@@ -158,6 +158,8 @@ export default async function Post({
             imageUrl={post.cover || ""}
             className="w-full"
             fullWidth
+            title={`${post.title}`}
+            text="Гадаю, вам сподобається цей допис."
             size="lg"
           />
         </div>
