@@ -31,7 +31,6 @@ import {
   ViberShareButton,
   WhatsappShareButton,
 } from "react-share";
-import { Platform } from "./types";
 
 const SharePanel = ({
   url,
