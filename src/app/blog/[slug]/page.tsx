@@ -145,9 +145,21 @@ export default async function Post({
               />
             ),
             blockquote: ({ children }) => (
-              <blockquote className="bg-primary-100 py-4 px-8 rounded-[1rem] my-4">
+              <blockquote className="bg-primary-100 py-4 pb-2 px-8 rounded-[1rem] my-4">
                 {children}
               </blockquote>
+            ),
+            ul: (props) => (
+              <ul className="list-disc list-inside mb-3" {...props} />
+            ),
+            ol: (props) => (
+              <ol className="list-decimal list-inside mb-3" {...props} />
+            ),
+            li: (props) => (
+              <li
+                className="leading-[1.5rem] tracking-wider md:leading-[2rem] mb-1 text-lg md:text-xl"
+                {...props}
+              />
             ),
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             img: ({ ref: _ref, onError: _onError, ...props }) => (
