@@ -79,9 +79,9 @@ export default async function Post({
 
   return (
     <>
-      <div className="my-[0rem] md:my-[4rem] p-8 md:p-0">
+      <div className="my-[0rem] lg:my-[4rem] p-8 lg:p-0">
         <div
-          className="rounded-[1rem] p-4 md:p-10 min-h-[25rem] md:min-h-[30rem] bg-default-50 text-default-900 -m-[2rem] md:m-0 md:-mx-[10.5rem] bg-cover bg-center flex flex-col justify-end text-white"
+          className="rounded-[1rem] p-4 md:p-10 min-h-[25rem] md:min-h-[30rem] bg-default-50 text-default-900 -m-[2rem] md:m-0 lg:-mx-[10.5rem] bg-cover bg-center flex flex-col justify-end text-white"
           style={{
             backgroundImage: `url(${post.cover})`,
           }}
