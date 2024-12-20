@@ -167,9 +167,13 @@ export default async function Post({
         >
           {post.content.parent}
         </Markdown>
-        <Divider />
-        <h3 className="text-2xl mb-4">Обговорення</h3>
-        <TelegramComments id={post.properties.Telegram.url} />
+        {post.properties.Telegram.url && (
+          <>
+            <Divider />
+            <h3 className="text-2xl mb-4">Обговорення</h3>
+            <TelegramComments id={post.properties.Telegram.url} />
+          </>
+        )}
         <Divider />
         <div className="flex flex-1 mt-4">
           <SharePanel
