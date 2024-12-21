@@ -2,7 +2,7 @@
   "object": "page",
   "id": "16070830-d845-8011-a4f5-f0e86432d2d8",
   "created_time": "2024-12-18T16:57:00.000Z",
-  "last_edited_time": "2024-12-19T20:43:00.000Z",
+  "last_edited_time": "2024-12-20T22:20:00.000Z",
   "created_by": {
     "object": "user",
     "id": "fb337067-9456-4ff8-b9c8-39097073a59a"
@@ -11,7 +11,7 @@
     "object": "user",
     "id": "fb337067-9456-4ff8-b9c8-39097073a59a"
   },
-  "cover": "/blog/doslidzhennya-sokrata/cover.png",
+  "cover": "/blog/doslidzhennya-sokrata/u7598949513_Socrates_stands_in_the_foreground_mid-shot,_Hes_t_76f2d930-c09f-4a17-a093-d5d3658f88a3_3.png",
   "icon": null,
   "parent": {
     "type": "database_id",
@@ -37,7 +37,7 @@
     "Редагувалось": {
       "id": "%5Bu%60%5C",
       "type": "last_edited_time",
-      "last_edited_time": "2024-12-19T20:43:00.000Z"
+      "last_edited_time": "2024-12-20T22:20:00.000Z"
     },
     "Опис": {
       "id": "g%60Mv",
@@ -59,6 +59,42 @@
           },
           "plain_text": "Політики, які красиво говорять, але не розуміють суті. Поети, що створюють шедеври без усвідомлення їхнього сенсу. Ремісники, чия майстерність у справі змушує їх вважати себе експертами у всьому. Через ці образи Сократ показує, що справжня мудрість — у визнанні власного незнання.",
           "href": null
+        }
+      ]
+    },
+    "Теги": {
+      "id": "g%7CEJ",
+      "type": "multi_select",
+      "multi_select": [
+        {
+          "id": "681eab53-60e3-4920-879f-f390143d3179",
+          "name": "Платон",
+          "color": "blue"
+        },
+        {
+          "id": "c54d083a-35a5-4771-a578-e3a9d9616313",
+          "name": "філософія",
+          "color": "orange"
+        },
+        {
+          "id": "7ccade44-ed47-4940-847c-b8dc2a9c31f4",
+          "name": "повільне читання",
+          "color": "purple"
+        },
+        {
+          "id": "5eef57a5-88d5-4f21-8bc4-97f048e05812",
+          "name": "Сократ",
+          "color": "gray"
+        },
+        {
+          "id": "620618a9-a6e0-49bd-b7f6-efb760a14154",
+          "name": "пізнання",
+          "color": "default"
+        },
+        {
+          "id": "c8f8c399-4344-4b2d-94aa-f7ffa8a1a46d",
+          "name": "мудрість",
+          "color": "yellow"
         }
       ]
     },

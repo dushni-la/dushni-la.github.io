@@ -3,9 +3,11 @@ import { NotionToMarkdown } from "notion-to-md";
 import { join, extname } from "node:path";
 import slugify from "slugify";
 import { MdBlock } from "notion-to-md/build/types";
+import { rm } from "node:fs/promises";
 
 const databaseId = process.env.NOTION_DATABASE_ID as string;
 const outputDir = "posts";
+const outputImgDir = "public/blog";
 
 // Initializing a client
 const notion = new Client({
@@ -22,18 +24,10 @@ async function processBlocks(content: MdBlock[], slug: string) {
       const [alt, imageUrl] = extractImageUrl(block.parent);
       if (!imageUrl) continue;
 
-      // Step 2: Get the file extension from the image URL
-      const fileExtension = getFileExtension(imageUrl);
-
-      // Step 3: Generate the local path for the image
-      const localImagePath = `/public/blog/${slug}/${block.blockId}.${fileExtension}`;
-      const absoluteImagePath = join(process.cwd(), localImagePath);
-
-      // Step 4: Download the image and save it locally
-      await downloadImage(imageUrl, absoluteImagePath);
+      const localImage = await processImage(imageUrl, slug);
 
       // Step 5: Replace the parent path with the new relative path
-      block.parent = `![${alt}](${localImagePath.replace("/public", "")})`;
+      block.parent = `![${alt}](${localImage})`;
     }
 
     // Recursively process child blocks if they exist
@@ -59,6 +53,7 @@ function extractImageUrl(parent: string): (string | null)[] {
  */
 function getFileExtension(url: string): string {
   const urlPath = new URL(url).pathname;
+  console.log(url, urlPath);
   return extname(urlPath).substring(1); // Remove the leading dot
 }
 
@@ -83,7 +78,39 @@ async function downloadImage(url: string, outputFilePath: string) {
   }
 }
 
+function getFileName(imageUrl: string) {
+  const fileName = imageUrl.split("?")[0].split("/").reverse()[0];
+  const ext = getFileExtension(imageUrl);
+  if (ext) {
+    return fileName.split(".").slice(0, -1);
+  }
+  return fileName;
+}
+
+async function processImage(imageUrl: string, slug: string) {
+  const fileName = getFileName(imageUrl);
+  let ext = getFileExtension(imageUrl) || "jpg";
+  if (ext === "") {
+    if (imageUrl.includes("unsplash")) {
+      const match = imageUrl.match(/fm=(\w+)/);
+      ext = match?.[1] || "jpg";
+    }
+  }
+  const localImagePath = `/public/blog/${slug}/${fileName}.${ext}`;
+  const absoluteImagePath = join(process.cwd(), localImagePath);
+  await downloadImage(imageUrl, absoluteImagePath);
+  return localImagePath.replace("/public", "");
+}
+
 (async () => {
+  await Promise.all(
+    [outputDir, outputImgDir].map((dir) =>
+      rm(dir, { recursive: true, force: true }),
+    ),
+  );
+
+  console.log("Cleared previous blog data");
+
   const pages = await notion.databases.query({
     database_id: databaseId,
     filter: {
@@ -116,16 +143,11 @@ async function downloadImage(url: string, outputFilePath: string) {
       let coverUrl: string | null = null;
       switch (result.cover?.type) {
         case "external": {
-          coverUrl = result.cover.external.url;
+          coverUrl = await processImage(result.cover.external.url, slug);
           break;
         }
         case "file": {
-          const imageUrl = result.cover.file.url;
-          const ext = getFileExtension(result.cover.file.url);
-          const localImagePath = `/public/blog/${slug}/cover.${ext}`;
-          const absoluteImagePath = join(process.cwd(), localImagePath);
-          await downloadImage(imageUrl, absoluteImagePath);
-          coverUrl = localImagePath.replace("/public", "");
+          coverUrl = await processImage(result.cover.file.url, slug);
           break;
         }
       }

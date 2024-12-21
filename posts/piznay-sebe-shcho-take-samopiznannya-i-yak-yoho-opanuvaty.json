@@ -2,7 +2,7 @@
   "object": "page",
   "id": "16270830-d845-808f-a4e9-c77b7e1e498d",
   "created_time": "2024-12-20T10:25:00.000Z",
-  "last_edited_time": "2024-12-20T15:07:00.000Z",
+  "last_edited_time": "2024-12-20T22:22:00.000Z",
   "created_by": {
     "object": "user",
     "id": "fb337067-9456-4ff8-b9c8-39097073a59a"
@@ -11,7 +11,7 @@
     "object": "user",
     "id": "fb337067-9456-4ff8-b9c8-39097073a59a"
   },
-  "cover": "/blog/piznay-sebe-shcho-take-samopiznannya-i-yak-yoho-opanuvaty/cover.png",
+  "cover": "/blog/piznay-sebe-shcho-take-samopiznannya-i-yak-yoho-opanuvaty/u7598949513_Abstract_conceptual_cover_image_representing_self_1acaa96e-15a9-4353-bb93-1e262decef5a_2.png",
   "icon": null,
   "parent": {
     "type": "database_id",
@@ -37,7 +37,7 @@
     "Редагувалось": {
       "id": "%5Bu%60%5C",
       "type": "last_edited_time",
-      "last_edited_time": "2024-12-20T15:07:00.000Z"
+      "last_edited_time": "2024-12-20T22:22:00.000Z"
     },
     "Опис": {
       "id": "g%60Mv",
@@ -59,6 +59,37 @@
           },
           "plain_text": "Самопізнання — це більше, ніж просто модний термін. Це шлях до розуміння власних емоцій, думок та справжніх бажань. У цьому дописі ми розкриємо сутність самопізнання, його роль у якісному житті та практичні методи, які допоможуть вам краще зрозуміти себе.",
           "href": null
+        }
+      ]
+    },
+    "Теги": {
+      "id": "g%7CEJ",
+      "type": "multi_select",
+      "multi_select": [
+        {
+          "id": "3c3c0189-064a-432e-ad45-f16c7d4047b3",
+          "name": "самопізнання",
+          "color": "brown"
+        },
+        {
+          "id": "351b09c4-b991-4de7-87a9-b6910f0af0e9",
+          "name": "рефлексія",
+          "color": "brown"
+        },
+        {
+          "id": "f3e15b7f-edc2-4cff-9f53-a8e60516cdcd",
+          "name": "особистісний розвиток",
+          "color": "red"
+        },
+        {
+          "id": "c54d083a-35a5-4771-a578-e3a9d9616313",
+          "name": "філософія",
+          "color": "orange"
+        },
+        {
+          "id": "620618a9-a6e0-49bd-b7f6-efb760a14154",
+          "name": "пізнання",
+          "color": "default"
         }
       ]
     },
