@@ -81,12 +81,12 @@ export default async function Post({
     <>
       <div className="my-[0rem] lg:my-[4rem] p-8 lg:p-0">
         <div
-          className="rounded-[1rem] p-4 md:p-10 min-h-[25rem] md:min-h-[30rem] bg-default-50 text-default-900 -m-[2rem] md:m-0 lg:-mx-[10.5rem] bg-cover bg-center flex flex-col justify-end text-white"
+          className="rounded-[1rem] p-2 md:p-4 lg:p-10 min-h-[25rem] md:min-h-[30rem] bg-default-50 text-default-900 -m-[2rem] md:m-0 lg:-mx-[10.5rem] bg-cover bg-center flex flex-col justify-end text-white"
           style={{
             backgroundImage: `url(${post.cover})`,
           }}
         >
-          <div className="p-4 md:p-8 rounded-[0.75rem] backdrop-blur-sm bg-zinc-900/20">
+          <div className="p-2 md:p-4 lg:p-8 rounded-[0.75rem] backdrop-blur-sm bg-zinc-900/20">
             <h1 className="text-4xl md:text-5xl leading-1">{post.title}</h1>
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8">
               <small>
@@ -150,14 +150,20 @@ export default async function Post({
               </blockquote>
             ),
             ul: (props) => (
-              <ul className="list-disc list-inside mb-3" {...props} />
+              <ul
+                className="list-disc list-inside mb-3 ml-0 md:ml-2 lg:ml-4"
+                {...props}
+              />
             ),
             ol: (props) => (
-              <ol className="list-decimal list-inside mb-3" {...props} />
+              <ol
+                className="list-decimal list-inside mb-3 ml-0 md:ml-2 lg:ml-4"
+                {...props}
+              />
             ),
             li: (props) => (
               <li
-                className="leading-[1.5rem] tracking-wider md:leading-[2rem] mb-1 text-lg md:text-xl"
+                className="leading-[1.5rem] md:leading-[2rem] mb-1 text-lg md:text-xl"
                 {...props}
               />
             ),
