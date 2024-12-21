@@ -1,6 +1,7 @@
 import Redirect from "./redirect";
 import { getEpisodes } from "../episodes/utils";
 import Head from "next/head";
+import { getSlug } from "@/components/utils";
 
 export default async function LatestRedirect() {
   const episodes = await getEpisodes();
@@ -11,6 +12,8 @@ export default async function LatestRedirect() {
 
   const latest = sortedEpisodes[0];
 
+  const slug = getSlug(latest.title);
+
   return (
     <>
       <Head>
@@ -20,7 +23,7 @@ export default async function LatestRedirect() {
           key="canonical"
         />
       </Head>
-      <Redirect id={+latest.guid} />
+      <Redirect id={+latest.guid} slug={slug} />
     </>
   );
 }
