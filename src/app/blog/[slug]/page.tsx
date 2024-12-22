@@ -4,6 +4,7 @@ import TelegramComments from "@/app/episodes/[id]/TelegramComments";
 import { Divider, Image } from "@nextui-org/react";
 import { formatDate } from "@/components/utils";
 import rehypeUnwrapImages from "rehype-unwrap-images";
+import rehypeRaw from "rehype-raw";
 import SharePanel from "@/components/SharePanel";
 import PostJsonLd from "./PostJsonLd";
 import { Metadata } from "next";
@@ -108,7 +109,7 @@ export default async function Post({
         </div>
         <Markdown
           className="my-[4rem]"
-          rehypePlugins={[rehypeUnwrapImages]}
+          rehypePlugins={[rehypeUnwrapImages, rehypeRaw]}
           components={{
             p: (props) => (
               <p

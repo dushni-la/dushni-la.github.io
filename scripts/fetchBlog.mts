@@ -30,12 +30,46 @@ async function processBlocks(content: MdBlock[], slug: string) {
       block.parent = `![${alt}](${localImage})`;
     }
 
+    if (block.type === "video") {
+      block.parent = convertToIframe(block.parent);
+    }
+
     // Recursively process child blocks if they exist
     if (block.children.length > 0) {
       block.children = await processBlocks(block.children, slug);
     }
   }
   return content;
+}
+
+function convertToIframe(input: string): string {
+  const regex =
+    /\[(.+?)\]\((https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+))\)/;
+  const match = input.match(regex);
+
+  if (!match) {
+    throw new Error("Invalid input format");
+  }
+
+  const alt = match[1]; // Extract the alt text
+  const url = match[3]; // Extract the YouTube video ID
+
+  return `
+<div className="my-[3rem] w-full flex flex-col justify-center">
+  <div className="relative overflow-hidden w-full pt-[56.25%] rounded-xl shadow-lg self-center mb-2">
+    <iframe
+      className="absolute top-0 left-0 right-0 bottom-0 w-full h-full"
+      src="https://www.youtube.com/embed/${url}?"
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    ></iframe>
+  </div>
+  <small>${alt}</small>
+</div>
+  `;
 }
 
 /**
