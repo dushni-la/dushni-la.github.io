@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 const PostItem = ({ post }: { post: Post }) => {
   return (
     <Link href={`/blog/${post.slug}`}>
-      <Card className="w-full md:w-[30rem] bg-background fg-foreground md:hover:scale-110">
+      <Card className="w-full md:w-[30rem] bg-background fg-foreground md:hover:scale-110 md:hover:z-50">
         <CardHeader className="flex-col items-start pb-0">
           <div
             className="rounded-[0.65rem] h-[20rem] w-full bg-default-50 text-default-900 bg-cover bg-center flex flex-col justify-end text-white"
@@ -90,7 +90,7 @@ export default async function Blog() {
 
   return (
     <div className="flex flex-col gap-8 md:gap-16 w-full md:w-[61rem]">
-      <div className="relative p-2 pt-6 md:p-4 lg:p-10 rounded-[1rem] shadow-lg bg-gradient-to-b from-yellow-500 dark:from-warning-100 to-yellow-900 dark:to-warning-900 text-white mt-4 self-center w-full md:w-[40rem] lg:w-[61rem]">
+      <div className=" relative p-2 pt-6 md:p-4 lg:p-10 rounded-[1rem] shadow-lg bg-gradient-to-b from-yellow-500 dark:from-warning-100 to-yellow-900 dark:to-warning-900 text-white mt-4 self-center w-full md:w-[40rem] lg:w-[61rem]">
         <Section
           title="Новий допис"
           subtitle="Свіжі думки з пилу з жару, які ще не встигли охолонути."
@@ -121,12 +121,16 @@ export default async function Blog() {
         titleH1
         subtitle="Знання не мають терміну придатності. Тут зібрані всі дописи, які змушували думати, дивуватися та переглядати свої погляди. Не пропусти те, що може змінити твоє уявлення про світ."
       >
-        <div className="p-2 md:p-4 lg:p-10 flex flex-1 flex-col gap-4 md:gap-[4rem] w-full md:w-[50rem] self-center items-center">
+        <div className="columns-1 lg:columns-2 self-center">
           {rest.map((post) => (
-            <PostItem key={post.id} post={post} />
+            <div key={post.id} className="mb-[1rem]">
+              <PostItem post={post} />
+            </div>
           ))}
         </div>
       </Section>
     </div>
   );
 }
+
+// <div className="p-2 md:p-4 lg:p-10 flex flex-1 flex-col gap-4 md:gap-[4rem] w-full md:w-[50rem] self-center items-center columns-2">
