@@ -20,6 +20,16 @@
   "archived": false,
   "in_trash": false,
   "properties": {
+    "Нотатки": {
+      "id": "IzD%5B",
+      "type": "rich_text",
+      "rich_text": []
+    },
+    "Повʼязані випуски": {
+      "id": "V%3E%3E%5B",
+      "type": "rich_text",
+      "rich_text": []
+    },
     "Дата публікації": {
       "id": "Wd%7Bj",
       "type": "date",

@@ -32,12 +32,8 @@ export const metadata: Metadata = {
 const EpisodesPage: React.FC = async () => {
   const episodes = await getEpisodes();
 
-  const sortedEpisodes = episodes.sort((a, b) => {
-    return new Date(b.pub_date).getTime() - new Date(a.pub_date).getTime();
-  });
-
-  const latest = sortedEpisodes[0];
-  const rest = sortedEpisodes.slice(1);
+  const latest = episodes[0];
+  const rest = episodes.slice(1);
 
   return (
     <div className="flex flex-col gap-8 md:gap-16 w-full">

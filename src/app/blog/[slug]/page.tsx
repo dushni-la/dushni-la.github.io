@@ -1,5 +1,5 @@
 import Markdown from "react-markdown";
-import { getPost, getPosts } from "../utils";
+import { getPost, getPostFromCache, getPosts } from "../utils";
 import TelegramComments from "@/app/episodes/[id]/TelegramComments";
 import { Divider, Image } from "@nextui-org/react";
 import { formatDate } from "@/components/utils";
@@ -9,6 +9,9 @@ import SharePanel from "@/components/SharePanel";
 import PostJsonLd from "./PostJsonLd";
 import { Metadata } from "next";
 import { BASE_URL } from "@/constants";
+import EpisodeItem from "@/components/EpisodeItem";
+import { getEpisodeFromCache } from "@/app/episodes/utils";
+import PostItem from "@/components/PostItem";
 
 export async function generateMetadata({
   params,
@@ -168,6 +171,33 @@ export default async function Post({
                 {...props}
               />
             ),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            figure: (props: any) => {
+              if (props["data-episode-id"]) {
+                const episode = getEpisodeFromCache(props["data-episode-id"]);
+                if (episode) {
+                  return (
+                    <div className="my-[3rem] w-full flex flex-col justify-center gap-2">
+                      <EpisodeItem data={episode} />
+                      <small>{props["data-caption"] || episode.title}</small>
+                    </div>
+                  );
+                }
+              }
+              if (props["data-post-slug"]) {
+                const post = getPostFromCache(props["data-post-slug"]);
+                console.log(props["data-post-slug"]);
+                if (post) {
+                  return (
+                    <div className="my-[3rem] w-full flex flex-col justify-center gap-2">
+                      <PostItem post={post} />
+                      <small>{props["data-caption"] || post.title}</small>
+                    </div>
+                  );
+                }
+              }
+              return <figure {...props} />;
+            },
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             img: ({ ref: _ref, onError: _onError, ...props }) => (
               <div className="my-[3rem] w-full flex justify-center">
@@ -186,6 +216,19 @@ export default async function Post({
         >
           {post.content.parent}
         </Markdown>
+        {post.related_episodes && (
+          <div className="mb-8">
+            <Divider />
+            <h3 className="text-2xl mb-4">Для тих, хто хоче копнути глибше</h3>
+            <div>
+              {post.related_episodes.map((e) => (
+                <div key={e.guid} className="mb-4">
+                  <EpisodeItem data={e} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         {post.properties.Telegram.url && (
           <>
             <Divider />

@@ -17,6 +17,27 @@ const notion = new Client({
 // passing notion client to the option
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+n2m.setCustomTransformer("embed", async (block: any) => {
+  console.log(block);
+  const { embed } = block;
+  if (!embed?.url) return "";
+  if (embed?.url.includes("dushni.la")) {
+    if (embed?.url.includes("episodes")) {
+      const match = embed.url.match(/episodes\/(\d+)\//);
+      return `<figure data-episode-id="${match[1]}" data-caption="${embed?.caption?.[0]?.plain_text}"></figure>`;
+    }
+    if (embed?.url.includes("blog")) {
+      const match = embed.url.match(/blog\/(?!-)((?:[a-z0-9]+-?)+)(?<!-)/);
+      return `<figure data-post-slug="${match[1]}" data-caption="${embed?.caption?.[0]?.plain_text ?? ""}"></figure>`;
+    }
+  }
+  return `<figure>
+  <iframe src="${embed?.url}"></iframe>
+  <figcaption>${await n2m.blockToMarkdown(embed?.caption)}</figcaption>
+</figure>`;
+});
+
 async function processBlocks(content: MdBlock[], slug: string) {
   for (const block of content) {
     if (block.type === "image") {

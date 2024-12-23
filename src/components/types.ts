@@ -108,10 +108,24 @@ interface PropertyText {
   rich_text: Text[];
 }
 
+interface MultiSelectItem {
+  id: string;
+  name: string;
+  color: string;
+}
+
+interface PropertyMultiSelect {
+  id: string;
+  type: "multi_select";
+  multi_select: MultiSelectItem[];
+}
+
 interface Properties {
   Telegram: PropertyUrl;
   Назва: PropertyTitle;
   Опис: PropertyText;
+  "Повʼязані випуски": PropertyText;
+  Теги: PropertyMultiSelect;
   Опубліковано: PropertyCheckbox;
   Редагувалось: PropertyLastEditedTime;
   "Дата публікації": PropertyDate;
@@ -138,5 +152,7 @@ export interface Post {
   url: string;
   public_url: string | null;
   content: Content;
+  related_episodes?: Episode[];
+  related_posts?: Post[];
   slug: string;
 }
