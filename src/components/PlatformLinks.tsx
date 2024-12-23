@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@nextui-org/react";
 import PlatformIcon from "./PlatformIcon";
 import { Platform } from "./types";
