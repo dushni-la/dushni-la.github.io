@@ -13,6 +13,7 @@ import { MdAdd } from "react-icons/md";
 import PlatformLinks from "./PlatformLinks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
+import { useAnalytics } from "./AnalyticsProvider";
 
 type Props = ButtonProps & { autoOpen?: boolean };
 
@@ -25,6 +26,8 @@ const SuspensedSubscribeButton = (props: Props) => {
   const pathname = usePathname();
   const isSubscribeOpen = query.get("follow");
 
+  const analytics = useAnalytics();
+
   useEffect(() => {
     if (!!isSubscribeOpen && autoOpen) {
       onOpen();
@@ -35,6 +38,7 @@ const SuspensedSubscribeButton = (props: Props) => {
     if (val === false && autoOpen && !!isSubscribeOpen) {
       router.replace(pathname);
     }
+    analytics.trackEvent("subscribe-btn-pressed", 1, { pathname });
     onOpenChange();
   };
 

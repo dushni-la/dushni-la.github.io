@@ -3,6 +3,7 @@
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
 import { PlayerProvider } from "./Player/PlayerContext";
+import { AnalyticsProvider, PirschProvider } from "./AnalyticsProvider";
 import { useEffect } from "react";
 
 function ForceThemeProvider({ children }: { children: React.ReactNode }) {
@@ -18,11 +19,14 @@ function ForceThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const pirschProvider = new PirschProvider("sV5tV5QICPELs7LbVUqOOckmtwwzgdVX");
   return (
     <NextUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="light" enableSystem>
         <ForceThemeProvider>
-          <PlayerProvider>{children}</PlayerProvider>
+          <AnalyticsProvider provider={pirschProvider}>
+            <PlayerProvider>{children}</PlayerProvider>
+          </AnalyticsProvider>
         </ForceThemeProvider>
       </NextThemesProvider>
     </NextUIProvider>
