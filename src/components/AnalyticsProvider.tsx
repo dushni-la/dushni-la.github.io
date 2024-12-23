@@ -1,3 +1,5 @@
+"use client";
+
 // Create React Context for Analytics
 import React, { createContext, useContext, ReactNode } from "react";
 import { Pirsch } from "pirsch-sdk/web";
