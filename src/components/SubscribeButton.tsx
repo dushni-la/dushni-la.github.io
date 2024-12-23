@@ -42,7 +42,7 @@ const SuspensedSubscribeButton = (props: Props) => {
   };
 
   const handleOpen = () => {
-    analytics.trackEvent("subscribe-btn-pressed");
+    analytics.trackEvent("Subscribe Button Pressed");
     onOpen();
   };
 
