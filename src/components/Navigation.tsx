@@ -55,7 +55,10 @@ const Navigation = () => {
 
   return (
     <>
-      <MotionNavbar className="bg-transparent" onMenuOpenChange={setIsMenuOpen}>
+      <MotionNavbar
+        className="bg-transparent z-[9999]"
+        onMenuOpenChange={setIsMenuOpen}
+      >
         <NavbarContent className="flex gap-4 justify-start md:justify-center">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
