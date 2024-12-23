@@ -56,7 +56,7 @@ const Navigation = () => {
   return (
     <>
       <MotionNavbar
-        className="bg-transparent z-[9999]"
+        className="bg-transparent z-[50]"
         onMenuOpenChange={setIsMenuOpen}
       >
         <NavbarContent className="flex gap-4 justify-start md:justify-center">

@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/react";
 import PlatformIcon from "./PlatformIcon";
 import { Platform } from "./types";
+import { useAnalytics } from "./AnalyticsProvider";
 
 const PLATFORM_NAMES: Record<Platform, string> = {
   apple: "Apple Podcasts",
@@ -34,20 +35,26 @@ interface Props {
 export const PlatformLink: React.FC<Props & { platform: Platform }> = ({
   hideLabels,
   platform: p,
-}) => (
-  <Button
-    key={p}
-    radius="full"
-    className="bg-gradient-to-tr from-default-50 to-default-200 shadow-lg cursor-pointer"
-    as={"a"}
-    href={PLATFORM_LINKS[p]}
-    target="_blank"
-    isIconOnly={hideLabels}
-  >
-    <PlatformIcon platform={p} size="2xl" />
-    {!hideLabels && PLATFORM_NAMES[p]}
-  </Button>
-);
+}) => {
+  const analytics = useAnalytics();
+  return (
+    <Button
+      key={p}
+      radius="full"
+      className="bg-gradient-to-tr from-default-50 to-default-200 shadow-lg cursor-pointer"
+      as={"a"}
+      href={PLATFORM_LINKS[p]}
+      target="_blank"
+      isIconOnly={hideLabels}
+      onPress={() =>
+        analytics.trackEvent("Platform Link Pressed", 1, { platform: p })
+      }
+    >
+      <PlatformIcon platform={p} size="2xl" />
+      {!hideLabels && PLATFORM_NAMES[p]}
+    </Button>
+  );
+};
 
 const PlatformLinks: React.FC<Props> = ({ hideLabels }) => (
   <>

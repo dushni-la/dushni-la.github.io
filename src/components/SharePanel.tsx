@@ -31,6 +31,7 @@ import {
   ViberShareButton,
   WhatsappShareButton,
 } from "react-share";
+import { useAnalytics } from "./AnalyticsProvider";
 
 const SharePanel = ({
   url,
@@ -46,6 +47,9 @@ const SharePanel = ({
 } & ButtonProps) => {
   const getUrlWithUtm = (p: string) =>
     `${url}?utm_source=social&utm_medium=${p}&utm_campaign=share`;
+
+  const analytics = useAnalytics();
+
   return (
     <Popover
       motionProps={{
@@ -80,6 +84,7 @@ const SharePanel = ({
           color="primary"
           radius="lg"
           size="sm"
+          onPress={() => analytics.trackEvent("Share List Opened")}
           {...buttonProps}
         >
           <PiShareFat />
@@ -92,6 +97,7 @@ const SharePanel = ({
             url={getUrlWithUtm("email")}
             subject={title}
             body={text}
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=email"
           >
             <FaEnvelope className="text-2xl text-[#0866ff]" />
           </EmailShareButton>
@@ -101,27 +107,28 @@ const SharePanel = ({
           <PinterestShareButton
             url={getUrlWithUtm("pinterest")}
             media={imageUrl}
-            className=""
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=pinterest"
           >
             <FaPinterest className="text-2xl text-[#e60122]" />
           </PinterestShareButton>
           <TelegramShareButton
             url={getUrlWithUtm("telegram")}
             title={title}
-            className=""
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=telegram"
           >
             <FaTelegram className="text-2xl text-[#24a9e9]" />
           </TelegramShareButton>
           <Link
             target="_blank"
             href={`https://threads.net/intent/post?text=${text} ${title}: ${getUrlWithUtm("threads")}`}
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=threads"
           >
             <FaThreads className="text-2xl text-[black]" />
           </Link>
           <PocketShareButton
             url={getUrlWithUtm("pocket")}
             title={title}
-            className=""
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=pocket"
           >
             <FaGetPocket className="text-2xl text-[#f50157]" />
           </PocketShareButton>
@@ -129,28 +136,28 @@ const SharePanel = ({
             url={getUrlWithUtm("twitter")}
             title={title}
             hashtags={["філософія", "подкаст", "душніла"]}
-            className=""
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=twitter"
           >
             <FaSquareXTwitter className="text-2xl text-[black]" />
           </TwitterShareButton>
           <RedditShareButton
             url={getUrlWithUtm("reddit")}
             title={title}
-            className=""
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=reddit"
           >
             <FaReddit className="text-2xl text-[#fa3b0a]" />
           </RedditShareButton>
           <WhatsappShareButton
             url={getUrlWithUtm("whatsapp")}
             title={text}
-            className=""
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=whatsapp"
           >
             <FaWhatsapp className="text-2xl text-[#4dc159]" />
           </WhatsappShareButton>
           <ViberShareButton
             url={getUrlWithUtm("viber")}
             title={text}
-            className=""
+            className="pirsch-event=Share+Pressed pirsch-meta-platform=viber"
           >
             <FaViber className="text-2xl text-[#6f5ceb]" />
           </ViberShareButton>

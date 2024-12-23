@@ -13,9 +13,12 @@ import {
 import { usePlayer } from "./PlayerContext";
 import { formatTime } from "../utils";
 import EpisodeMetadataHeader from "@/components/EpisodeMetadataHeader";
+import { useAnalytics } from "../AnalyticsProvider";
 
 const Player = () => {
   const player = usePlayer();
+
+  const analytics = useAnalytics();
 
   if (!player.currentEpisode) return null;
 
@@ -71,6 +74,11 @@ const Player = () => {
                 className="data-[hover]:bg-foreground/10"
                 radius="full"
                 variant="light"
+                onPress={() =>
+                  analytics.trackEvent("Player Button Pressed", 1, {
+                    button: "back",
+                  })
+                }
               >
                 <PiSkipBack />
               </Button>
@@ -79,7 +87,12 @@ const Player = () => {
                 className="data-[hover]:bg-foreground/10 flex-col"
                 radius="full"
                 variant="light"
-                onPress={() => player.seek(player.currentTime - 30)}
+                onPress={() => {
+                  player.seek(player.currentTime - 30);
+                  analytics.trackEvent("Player Button Pressed", 1, {
+                    button: "rewind-30",
+                  });
+                }}
               >
                 <p className="text-xs -mb-[3px]">30</p>
                 <PiRewind />
@@ -89,7 +102,12 @@ const Player = () => {
                 className="data-[hover]:bg-foreground/10 flex-col"
                 radius="full"
                 variant="light"
-                onPress={() => player.seek(player.currentTime - 10)}
+                onPress={() => {
+                  player.seek(player.currentTime - 10);
+                  analytics.trackEvent("Player Button Pressed", 1, {
+                    button: "rewind-10",
+                  });
+                }}
               >
                 <p className="text-xs -mb-[3px]">10</p>
                 <PiRewind />
@@ -99,7 +117,12 @@ const Player = () => {
                 className="data-[hover]:bg-foreground/10"
                 radius="full"
                 variant="light"
-                onPress={player.togglePlay}
+                onPress={() => {
+                  player.togglePlay();
+                  analytics.trackEvent("Player Button Pressed", 1, {
+                    button: "play-paused",
+                  });
+                }}
               >
                 {player.isPlaying ? <PiPause /> : <PiPlay />}
               </Button>
@@ -108,7 +131,12 @@ const Player = () => {
                 className="data-[hover]:bg-foreground/10 flex-col"
                 radius="full"
                 variant="light"
-                onPress={() => player.seek(player.currentTime + 10)}
+                onPress={() => {
+                  player.seek(player.currentTime + 10);
+                  analytics.trackEvent("Player Button Pressed", 1, {
+                    button: "fwd-10",
+                  });
+                }}
               >
                 <p className="text-xs -mb-[3px]">10</p>
                 <PiFastForward />
@@ -118,7 +146,12 @@ const Player = () => {
                 className="data-[hover]:bg-foreground/10 flex-col"
                 radius="full"
                 variant="light"
-                onPress={() => player.seek(player.currentTime + 30)}
+                onPress={() => {
+                  player.seek(player.currentTime + 30);
+                  analytics.trackEvent("Player Button Pressed", 1, {
+                    button: "fwd-30",
+                  });
+                }}
               >
                 <p className="text-xs -mb-[3px]">30</p>
                 <PiFastForward />
@@ -128,6 +161,11 @@ const Player = () => {
                 className="data-[hover]:bg-foreground/10"
                 radius="full"
                 variant="light"
+                onPress={() => {
+                  analytics.trackEvent("Player Button Pressed", 1, {
+                    button: "next",
+                  });
+                }}
               >
                 <PiSkipForward />
               </Button>

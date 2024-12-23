@@ -1,3 +1,5 @@
+// Create React Context for Analytics
+import React, { createContext, useContext, ReactNode } from "react";
 import { Pirsch } from "pirsch-sdk/web";
 
 // Define a generic interface for analytics providers.
@@ -53,9 +55,6 @@ class PirschProvider implements AnalyticsProvider {
     await this.client.event(name, duration, metadata);
   }
 }
-
-// Create React Context for Analytics
-import React, { createContext, useContext, ReactNode } from "react";
 
 interface AnalyticsContextValue {
   analytics: AnalyticsModule;

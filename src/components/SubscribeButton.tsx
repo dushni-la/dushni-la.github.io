@@ -38,13 +38,17 @@ const SuspensedSubscribeButton = (props: Props) => {
     if (val === false && autoOpen && !!isSubscribeOpen) {
       router.replace(pathname);
     }
-    analytics.trackEvent("subscribe-btn-pressed", 1, { pathname });
     onOpenChange();
+  };
+
+  const handleOpen = () => {
+    analytics.trackEvent("subscribe-btn-pressed");
+    onOpen();
   };
 
   return (
     <>
-      <Button color="warning" {...rest} onPress={onOpen}>
+      <Button color="warning" {...rest} onPress={handleOpen}>
         <MdAdd />
         Підписатись
       </Button>
