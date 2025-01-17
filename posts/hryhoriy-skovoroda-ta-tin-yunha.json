@@ -2,7 +2,7 @@
   "object": "page",
   "id": "16470830-d845-80cf-a48e-fc45b5eba434",
   "created_time": "2024-12-22T22:37:00.000Z",
-  "last_edited_time": "2024-12-23T13:20:00.000Z",
+  "last_edited_time": "2025-01-17T16:44:00.000Z",
   "created_by": {
     "object": "user",
     "id": "fb337067-9456-4ff8-b9c8-39097073a59a"
@@ -83,7 +83,7 @@
     "Редагувалось": {
       "id": "%5Bu%60%5C",
       "type": "last_edited_time",
-      "last_edited_time": "2024-12-23T13:20:00.000Z"
+      "last_edited_time": "2025-01-17T16:44:00.000Z"
     },
     "Опис": {
       "id": "g%60Mv",
