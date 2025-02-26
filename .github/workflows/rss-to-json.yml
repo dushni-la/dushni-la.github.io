@@ -13,10 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch RSS feed
-        run: |
-          curl -sSL $RSS_FEED -o rss-feed.xml
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
 
@@ -36,7 +32,7 @@ jobs:
 
       - name: Parse RSS feed into JSON
         run: |
-          bun run scripts/parseRSS.ts
+          bun run scripts/processRSS.mts
 
       - name: Commit and push JSON files
         run: |
