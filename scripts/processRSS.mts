@@ -42,12 +42,6 @@ async function fetchNotionData(databaseId: string) {
   try {
     const pages = await notion.databases.query({
       database_id: databaseId,
-      filter: {
-        property: "Опубліковано",
-        checkbox: {
-          equals: true,
-        },
-      },
     });
 
     // Process and return a map of episode IDs to their associated data
@@ -75,18 +69,12 @@ async function fetchNotionData(databaseId: string) {
         buzzsproutId = String(buzzsproutIdProp.number);
       }
 
-      if (
-        youtubeIdProp?.type === "rich_text" &&
-        youtubeIdProp.rich_text.length > 0
-      ) {
-        youtubeId = youtubeIdProp.rich_text[0].plain_text;
+      if (youtubeIdProp?.type === "url" && youtubeIdProp.url) {
+        youtubeId = youtubeIdProp.url;
       }
 
-      if (
-        telegramIdProp?.type === "rich_text" &&
-        telegramIdProp.rich_text.length > 0
-      ) {
-        telegramId = telegramIdProp.rich_text[0].plain_text;
+      if (telegramIdProp?.type === "url" && telegramIdProp.url) {
+        telegramId = telegramIdProp.url;
       } else if (telegramIdProp?.type === "number") {
         telegramId = String(telegramIdProp.number);
       }
@@ -239,7 +227,7 @@ async function parseRSS(
 const rssUrl =
   process.env.RSS_URL || "https://feeds.buzzsprout.com/1879550.rss";
 const outputDir = process.env.OUTPUT_DIR || "output";
-const notionDatabaseId = process.env.NOTION_DATABASE_ID;
+const notionDatabaseId = process.env.NOTION_EPISODES_DATABASE_ID;
 
 if (!notionDatabaseId) {
   console.error("Error: NOTION_DATABASE_ID environment variable is required");
