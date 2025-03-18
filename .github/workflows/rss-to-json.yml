@@ -44,3 +44,7 @@ jobs:
           git add output/*.json
           git commit -m "Add converted RSS feed items as JSON files" || echo "No changes to commit"
           git push
+
+  build-and-deploy:
+    needs: convert-rss
+    uses: dushni-la/dushni-la.github.io/.github/workflows/build-and-deploy.yml@trunk
