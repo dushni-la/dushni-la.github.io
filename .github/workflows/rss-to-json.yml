@@ -1,4 +1,4 @@
-name: RSS to JSON
+name: Generate Episodes JSON
 
 env:
   RSS_FEED: https://feeds.buzzsprout.com/1879550.rss
@@ -31,6 +31,9 @@ jobs:
         run: bun install
 
       - name: Parse RSS feed into JSON
+        env: # Or as an environment variable
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_EPISODES_DATABASE_ID: ${{ secrets.NOTION_EPISODES_DATABASE_ID }}
         run: |
           bun run scripts/processRSS.mts
 

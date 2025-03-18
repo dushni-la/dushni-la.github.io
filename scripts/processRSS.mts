@@ -230,7 +230,9 @@ const outputDir = process.env.OUTPUT_DIR || "output";
 const notionDatabaseId = process.env.NOTION_EPISODES_DATABASE_ID;
 
 if (!notionDatabaseId) {
-  console.error("Error: NOTION_DATABASE_ID environment variable is required");
+  console.error(
+    "Error: NOTION_EPISODES_DATABASE_ID environment variable is required",
+  );
   process.exit(1);
 }
 
