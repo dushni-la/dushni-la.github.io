@@ -35,6 +35,27 @@ export const metadata: Metadata = {
 
 const feedback: Feedback[] = [
   {
+    username: "radioheaden",
+    text: "В 5 кращих подкастів українською. Супер! Дякую, чувак!",
+    platform: "apple",
+    stars: 5,
+    date: "05/01/2025",
+  },
+  {
+    username: "Elvira p.",
+    text: "Дякую, ваш подкаст допомагає наштовхувати на роздуми і нові ідеї. Ще хотілось би побачити, на яких книжках заснований кожен випуск.",
+    platform: "castbox",
+    stars: 5,
+    date: "25/10/2024",
+  },
+  {
+    username: "Павло Коваль",
+    text: 'Дякую, за ці роздуми. круто, дослухали) Друг запитав, коли я йому розповів ці роздуми: "А як усвідомити?"',
+    platform: "castbox",
+    stars: 5,
+    date: "12/02/2024",
+  },
+  {
     username: "Трохи більше ніж вдача",
     text: "Дуже близькі думки. Ніби саморефлексую під час прослуховування. Дякую!",
     platform: "apple",
@@ -238,34 +259,34 @@ const HeroCard = ({ latest }: { latest: Episode }) => (
   </Card>
 );
 
-const achievements = [
-  {
-    title: "336K",
-    subtitle: "завантажень",
-    comment: "і це лише аудіоверсія.",
-  },
-  {
-    title: episodes.length.toString(),
-    subtitle: "випусків",
-    comment: "та ще є кілька бонусних епізодів.",
-  },
-  {
-    title: "№1",
-    subtitle: "подкаст в Україні*",
-    comment: "*буває час від часу",
-  },
-  {
-    title: "151",
-    subtitle: "країна, де вмикався подкаст,",
-    comment: "а також 7795 міст.",
-  },
-];
-
 export default async function Home() {
   const episodes = await getEpisodes();
 
   const sorted = episodes.sort((a, b) => (+a.episode > +b.episode ? -1 : 1));
-  
+
+  const achievements = [
+    {
+      title: "336K",
+      subtitle: "завантажень",
+      comment: "і це лише аудіоверсія.",
+    },
+    {
+      title: episodes.length.toString(),
+      subtitle: "випусків",
+      comment: "та ще є кілька бонусних епізодів.",
+    },
+    {
+      title: "№1",
+      subtitle: "подкаст в Україні*",
+      comment: "*буває час від часу",
+    },
+    {
+      title: "151",
+      subtitle: "країна, де вмикався подкаст,",
+      comment: "а також 7795 міст.",
+    },
+  ];
+
   return (
     <div className="p-4 md:p-10 flex flex-col gap-16 pb-0">
       <HeroCard latest={sorted[0]} />
