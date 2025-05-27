@@ -238,34 +238,34 @@ const HeroCard = ({ latest }: { latest: Episode }) => (
   </Card>
 );
 
+const achievements = [
+  {
+    title: "336K",
+    subtitle: "завантажень",
+    comment: "і це лише аудіоверсія.",
+  },
+  {
+    title: episodes.length.toString(),
+    subtitle: "випусків",
+    comment: "та ще є кілька бонусних епізодів.",
+  },
+  {
+    title: "№1",
+    subtitle: "подкаст в Україні*",
+    comment: "*буває час від часу",
+  },
+  {
+    title: "151",
+    subtitle: "країна, де вмикався подкаст,",
+    comment: "а також 7795 міст.",
+  },
+];
+
 export default async function Home() {
   const episodes = await getEpisodes();
 
   const sorted = episodes.sort((a, b) => (+a.episode > +b.episode ? -1 : 1));
-
-  const achievements = [
-    {
-      title: "280K",
-      subtitle: "завантажень",
-      comment: "і це лише аудіоверсія.",
-    },
-    {
-      title: episodes.length.toString(),
-      subtitle: "випусків",
-      comment: "та ще є кілька бонусних епізодів.",
-    },
-    {
-      title: "№1",
-      subtitle: "подкаст в Україні*",
-      comment: "*буває час від часу",
-    },
-    {
-      title: "144",
-      subtitle: "країни, де вмикався подкаст,",
-      comment: "а також 7279 міст.",
-    },
-  ];
-
+  
   return (
     <div className="p-4 md:p-10 flex flex-col gap-16 pb-0">
       <HeroCard latest={sorted[0]} />
