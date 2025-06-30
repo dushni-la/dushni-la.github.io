@@ -4,7 +4,7 @@ import { Image } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
 
-import { useLeadCaptureModal } from "./leadModal";
+import { useLeadCaptureModal } from "@/components/LeadCaptureModal";
 
 export default function Course() {
   const { openModal, Modal } = useLeadCaptureModal();
@@ -12,11 +12,11 @@ export default function Course() {
   return (
     <div>
       {/* Hero Section */}
-      <header className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-yellow-50 pt-16 pb-20">
+      <header className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-yellow-50 dark:from-blue-800 dark:to-yellow-600 pt-16 pb-20">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <div className="mb-6">
-              <span className="inline-block px-4 py-2 bg-warning text-foreground rounded-full text-sm font-medium">
+              <span className="inline-block px-4 py-2 bg-warning text-foreground dark:text-slate-900 rounded-full text-sm font-medium">
                 Філософсько-практичний курс
               </span>
             </div>
@@ -25,7 +25,7 @@ export default function Course() {
               <span className="gradient-text">Шлях самопізнання</span>
             </h1>
 
-            <p className="text-xl md:text-2xl mb-8 text-gray-600 font-alegreya">
+            <p className="text-xl md:text-2xl mb-8 text-gray-600 dark:text-slate-50 font-alegreya">
               П&apos;ять модулів для тих, хто готовий зустрітися з собою
               справжнім
             </p>
@@ -33,19 +33,19 @@ export default function Course() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <a
                 href="#packages"
-                className="bg-warning hover:bg-yellow-400 text-foreground px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg"
+                className="bg-warning hover:bg-yellow-400 text-foreground dark:text-slate-900 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg"
               >
                 Почати курс
               </a>
               <a
                 href="#details"
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all"
+                className="border-2 border-primary dark:border-yellow-400 text-primary dark:text-yellow-400 hover:bg-primary dark:hover:bg-slate-600 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all"
               >
                 Дізнатися більше
               </a>
             </div>
 
-            <div className="text-sm text-gray-500 space-y-1">
+            <div className="text-sm text-gray-500 dark:text-slate-50 space-y-1">
               <p>
                 📚 5 модулів • 🎯 Практичні завдання • 📝 Щоденникові практики
               </p>
@@ -60,10 +60,13 @@ export default function Course() {
         {/* Decorative elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-primary opacity-10 rounded-full"></div>
         <div className="absolute bottom-20 right-10 w-32 h-32 bg-warning opacity-10 rounded-full"></div>
+        <div className="absolute bottom-10 right-15 w-24 h-24 bg-warning opacity-10 rounded-full"></div>
+        <div className="absolute bottom-10 right-5 w-24 h-24 bg-warning opacity-10 rounded-full"></div>
+        <div className="absolute top-10 left-5 w-7 h-7 bg-primary opacity-10 rounded-full"></div>
       </header>
 
       {/* Для кого цей курс */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-slate-800">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">
@@ -80,7 +83,7 @@ export default function Course() {
                     <h3 className="font-semibold text-lg mb-2">
                       Відчуваєте, що живете &ldquo;не своє&rdquo; життя
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400">
                       Як Марія з притчі — успішна ззовні, але порожня всередині
                     </p>
                   </div>
@@ -94,7 +97,7 @@ export default function Course() {
                     <h3 className="font-semibold text-lg mb-2">
                       Шукаєте глибші відповіді на життєві питання
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400">
                       Готові до серйозної роботи з собою через філософію та
                       психологію
                     </p>
@@ -109,7 +112,7 @@ export default function Course() {
                     <h3 className="font-semibold text-lg mb-2">
                       Готові до ведення щоденника та рефлексії
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400">
                       Розумієте, що зміни потребують часу та постійної роботи
                     </p>
                   </div>
@@ -125,7 +128,7 @@ export default function Course() {
                     <h3 className="font-semibold text-lg mb-2">
                       Шукаєте швидких рішень
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400">
                       Курс вимагає глибокої роботи та не обіцяє миттєвих
                       результатів
                     </p>
@@ -140,7 +143,7 @@ export default function Course() {
                     <h3 className="font-semibold text-lg mb-2">
                       Не готові до самоаналізу
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400">
                       Курс передбачає чесний погляд на себе та свої переконання
                     </p>
                   </div>
@@ -154,7 +157,7 @@ export default function Course() {
                     <h3 className="font-semibold text-lg mb-2">
                       Хочете тільки мотивацію
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400">
                       Це не мотиваційний курс, а глибинна робота з особистістю
                     </p>
                   </div>
@@ -168,18 +171,14 @@ export default function Course() {
       {/* Мапа модулів */}
       <section
         id="details"
-        className="py-20 mountain-path relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, #e0ebf4 0%, #b4c9da 50%, #779dbc 100%)",
-        }}
+        className="py-20 mountain-path relative overflow-hidden bg-gradient-to-tr from-blue-50 to-yellow-50 dark:from-slate-800 dark:to-yellow-500"
       >
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ваш шлях на вершину
             </h2>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-500 dark:text-slate-50 max-w-2xl mx-auto">
               П&apos;ять етапів сходження до справжнього себе
             </p>
           </div>
@@ -204,98 +203,38 @@ export default function Course() {
               {/* Modules */}
               <div
                 className="relative grid grid-cols-5 gap-4"
-                style={{ height: 400 }}
+                style={{ height: 450 }}
               >
                 {/* Модуль 1 */}
-                <div
-                  className="flex flex-col justify-end items-center"
-                  style={{ marginTop: 300 }}
-                >
-                  <div className="module-card bg-white/90 rounded-xl p-6 text-center mb-4 max-w-xs">
-                    <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="font-bold text-foreground">1</span>
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">Початок шляху</h3>
-                    <p className="text-sm text-gray-600">
-                      Тригери самопізнання. Принципи: сміливість, відвертість,
-                      зацікавленість
-                    </p>
-                  </div>
-                </div>
-
-                {/* Модуль 2 */}
-                <div
-                  className="flex flex-col justify-end items-center"
-                  style={{ marginTop: 200 }}
-                >
-                  <div className="module-card bg-white/90 rounded-xl p-6 text-center mb-4 max-w-xs">
-                    <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="font-bold text-foreground">2</span>
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">Сумнів та норма</h3>
-                    <p className="text-sm text-gray-600">
-                      Внутрішній критик. Соціальні норми та їх вплив на
-                      автентичність
-                    </p>
-                  </div>
-                </div>
-
-                {/* Модуль 3 */}
-                <div
-                  className="flex flex-col justify-end items-center"
-                  style={{ marginTop: 120 }}
-                >
-                  <div className="module-card bg-white/90 rounded-xl p-6 text-center mb-4 max-w-xs">
-                    <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="font-bold text-foreground">3</span>
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">
-                      Бажання та призначення
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Розрізнення справжніх прагнень від нав&apos;язаних. Пошук
-                      &ldquo;сродної праці&rdquo;
-                    </p>
-                  </div>
-                </div>
-
-                {/* Модуль 4 */}
-                <div
-                  className="flex flex-col justify-end items-center"
-                  style={{ marginTop: 60 }}
-                >
-                  <div className="module-card bg-white/90 rounded-xl p-6 text-center mb-4 max-w-xs">
-                    <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="font-bold text-foreground">4</span>
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">
-                      Світогляд та зміна
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Робота з переконаннями. Стрибок у невідоме. Справжня
-                      трансформація
-                    </p>
-                  </div>
-                </div>
-
-                {/* Модуль 5 */}
-                <div
-                  className="flex flex-col justify-end items-center"
-                  style={{ marginTop: 20 }}
-                >
-                  <div className="module-card bg-white/90 rounded-xl p-6 text-center mb-4 max-w-xs">
-                    <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="font-bold text-foreground">5</span>
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">
-                      Інтеграція та спіраль
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Спіраль самопізнання. Пошук часу для себе. Безкінечний
-                      шлях
-                    </p>
-                  </div>
-                </div>
+                <ModuleCard
+                  number={1}
+                  title="Початок шляху"
+                  description="Тригери самопізнання. Принципи: сміливість, відвертість, зацікавленість"
+                />
+                <ModuleCard
+                  number={2}
+                  style={{ marginBottom: 50 }}
+                  title="Сумнів та норма"
+                  description="Внутрішній критик. Соціальні норми та їх вплив на автентичність"
+                />
+                <ModuleCard
+                  number={3}
+                  style={{ marginBottom: 120 }}
+                  title="Бажання та призначення"
+                  description='Розрізнення справжніх прагнень від нав&apos;язаних. Пошук "сродної праці"'
+                />
+                <ModuleCard
+                  number={4}
+                  style={{ marginBottom: 200 }}
+                  title="Світогляд та зміна"
+                  description="Робота з переконаннями. Стрибок у невідоме. Що таке зміна?"
+                />
+                <ModuleCard
+                  number={5}
+                  style={{ marginBottom: 220 }}
+                  title="Інтеграція та спіраль"
+                  description="Спіраль самопізнання. Пошук часу для себе. Безкінечний шлях"
+                />
               </div>
             </div>
           </div>
@@ -303,86 +242,50 @@ export default function Course() {
           {/* Mobile версія - вертикально */}
           <div className="lg:hidden">
             <div className="max-w-md mx-auto space-y-8">
-              <div className="module-card bg-white/90 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-foreground">1</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Початок шляху</h3>
-                <p className="text-sm text-gray-600">
-                  Тригери самопізнання. Принципи: сміливість, відвертість,
-                  зацікавленість
-                </p>
-              </div>
-
+              <ModuleCard
+                number={1}
+                title="Початок шляху"
+                description="Тригери самопізнання. Принципи: сміливість, відвертість, зацікавленість"
+              />
               <div className="flex justify-center">
                 <div className="w-px h-8 bg-white/50"></div>
               </div>
-
-              <div className="module-card bg-white/90 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-foreground">2</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Сумнів та норма</h3>
-                <p className="text-sm text-gray-600">
-                  Внутрішній критик. Соціальні норми та їх вплив на
-                  автентичність
-                </p>
-              </div>
-
+              <ModuleCard
+                number={2}
+                title="Сумнів та норма"
+                description="Внутрішній критик. Соціальні норми та їх вплив на автентичність"
+              />
               <div className="flex justify-center">
                 <div className="w-px h-8 bg-white/50"></div>
               </div>
-
-              <div className="module-card bg-white/90 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-foreground">3</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">
-                  Бажання та призначення
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Розрізнення справжніх прагнень від нав&apos;язаних. Пошук
-                  &ldquo;сродної праці&rdquo;
-                </p>
-              </div>
-
+              <ModuleCard
+                number={3}
+                title="Бажання та призначення"
+                description='Розрізнення справжніх прагнень від нав&apos;язаних. Пошук "сродної праці"'
+              />
               <div className="flex justify-center">
                 <div className="w-px h-8 bg-white/50"></div>
               </div>
-
-              <div className="module-card bg-white/90 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-foreground">4</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Світогляд та зміна</h3>
-                <p className="text-sm text-gray-600">
-                  Робота з переконаннями. Стрибок у невідоме. Справжня
-                  трансформація
-                </p>
-              </div>
-
+              <ModuleCard
+                number={4}
+                title="Світогляд та зміна"
+                description="Робота з переконаннями. Стрибок у невідоме. Що таке зміна?"
+              />
               <div className="flex justify-center">
                 <div className="w-px h-8 bg-white/50"></div>
               </div>
-
-              <div className="module-card bg-white/90 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-foreground">5</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">
-                  Інтеграція та спіраль
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Спіраль самопізнання. Пошук часу для себе. Безкінечний шлях
-                </p>
-              </div>
+              <ModuleCard
+                number={5}
+                title="Інтеграція та спіраль"
+                description="Спіраль самопізнання. Пошук часу для себе. Безкінечний шлях"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* Що включено в курс */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-700">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">
@@ -390,74 +293,51 @@ export default function Course() {
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">📚</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Відеолекції</h3>
-                <p className="text-gray-600">
-                  5 модулів з детальним розбором теорії та практичних вправ
-                </p>
-              </div>
+              <IncludedCard
+                emoji="📚"
+                title="Відеолекції"
+                description="5 модулів з детальним розбором теорії та практичних вправ"
+              />
 
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">📖</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Конспекти</h3>
-                <p className="text-gray-600">
-                  Структуровані матеріали з ключовими поняттями та джерелами
-                </p>
-              </div>
+              <IncludedCard
+                emoji="📖"
+                title="Конспекти"
+                description="Структуровані матеріали з ключовими поняттями та джерелами"
+              />
 
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">📝</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Практичні завдання</h3>
-                <p className="text-gray-600">
-                  Щоденникові практики та вправи для глибокої рефлексії
-                </p>
-              </div>
+              <IncludedCard
+                emoji="📝"
+                title="Практичні завдання"
+                description="Щоденникові практики та вправи для глибокої рефлексії"
+              />
 
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-                <div className="w-16 h-16 bg-warning/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🎭</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Притчі</h3>
-                <p className="text-gray-600">
-                  Історія Марії як метафора вашого власного шляху
-                </p>
-              </div>
+              <IncludedCard
+                alt
+                emoji="🎭"
+                title="Притча"
+                description="Історія Марії як метафора вашого власного шляху"
+              />
 
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-                <div className="w-16 h-16 bg-warning/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🧠</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">
-                  Філософські концепції
-                </h3>
-                <p className="text-gray-600">
-                  Від Платона до сучасної психології в доступному викладі
-                </p>
-              </div>
+              <IncludedCard
+                alt
+                emoji="🧠"
+                title="Філософські концепції"
+                description="Від Платона до сучасної психології в доступному викладі"
+              />
 
-              <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-                <div className="w-16 h-16 bg-warning/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl">🔄</span>
-                </div>
-                <h3 className="font-bold text-lg mb-2">Спіраль самопізнання</h3>
-                <p className="text-gray-600">
-                  Методологія безкінечного саморозвитку
-                </p>
-              </div>
+              <IncludedCard
+                alt
+                emoji="🔄"
+                title="Спіраль самопізнання"
+                description="Методологія безкінечного саморозвитку"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* Відгуки учасників */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-slate-800">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">
@@ -484,9 +364,11 @@ export default function Course() {
               </FeedbackItem>
             </div>
 
-            <div className="text-center mt-8">
-              <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 max-w-3xl mx-auto">
-                <h3 className="font-bold text-lg mb-2">Важливо знати</h3>
+            <div className="text-center mt-16">
+              <div className="bg-yellow-50 dark:bg-warning-700 border border-yellow-200 rounded-xl p-6 max-w-3xl mx-auto">
+                <h3 className="font-bold text-lg mb-2 dark:text-slate-700">
+                  ❗Важливо знати❗
+                </h3>
                 <p className="text-gray-700">
                   Цей курс не для швидких результатів. Учасники відзначають
                   потребу в повільному опрацюванні матеріалів та регулярній
@@ -502,21 +384,21 @@ export default function Course() {
       {/* Пакети та ціни */}
       <section
         id="packages"
-        className="py-16 bg-gradient-to-br from-blue-50 to-indigo-100"
+        className="py-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-800"
       >
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-4">
               Оберіть свій шлях
             </h2>
-            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            <p className="text-center text-gray-600 dark:text-slate-200 mb-12 max-w-2xl mx-auto">
               Різні формати навчання для різних потреб. Від самостійного
-              проходження до індивідуального супроводу.
+              проходження до індивідуального&nbsp;супроводу.
             </p>
 
             <div className="grid md:grid-cols-3 gap-8">
               {/* Базовий пакет */}
-              <div className="bg-white rounded-xl p-8 shadow-lg">
+              <div className="bg-white dark:bg-slate-900 rounded-xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold mb-2">Базовий</h3>
                 <p className="text-gray-600 mb-6">
                   Для самостійного проходження
@@ -555,9 +437,9 @@ export default function Course() {
               </div>
 
               {/* Стандартний пакет */}
-              <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-warning relative">
+              <div className="bg-white dark:bg-slate-900 rounded-xl p-8 shadow-lg border-2 border-warning relative">
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-warning text-foreground px-4 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-warning text-foreground dark:text-slate-900 px-4 py-1 rounded-full text-sm font-semibold">
                     Популярний
                   </span>
                 </div>
@@ -591,18 +473,18 @@ export default function Course() {
 
                 <button
                   onClick={() => openModal("standard")}
-                  className="w-full bg-warning text-foreground py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors"
+                  className="w-full bg-warning text-foreground dark:text-slate-900  py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors"
                 >
                   Приєднатися до групи
                 </button>
 
-                <p className="text-center text-sm text-gray-500 mt-3">
+                <p className="text-center text-sm text-gray-500 dark:text-gray-50 mt-3">
                   * Чекаємо наповнення групи
                 </p>
               </div>
 
               {/* Індивідуальний пакет */}
-              <div className="bg-white rounded-xl p-8 shadow-lg">
+              <div className="bg-white dark:bg-slate-900 rounded-xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold mb-2">Індивідуальний</h3>
                 <p className="text-gray-600 mb-6">Особистий супровід</p>
 
@@ -643,7 +525,7 @@ export default function Course() {
       </section>
 
       {/* Про автора */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-blue-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row items-center gap-12">
@@ -657,11 +539,11 @@ export default function Course() {
 
               <div className="flex-1">
                 <h2 className="text-3xl font-bold mb-4">Про автора курсу</h2>
-                <h3 className="text-xl font-semibold mb-4 text-primary">
+                <h3 className="text-xl font-semibold mb-4 text-primary dark:text-blue-200">
                   Ігор Кузьменко
                 </h3>
 
-                <div className="space-y-4 text-gray-700">
+                <div className="space-y-4 text-gray-700 dark:text-white">
                   <p>
                     Ведучий подкасту &quot;Душніла&quot;, який налічує майже
                     сотню випусків про філософію, психологію та самоаналіз.
@@ -684,11 +566,14 @@ export default function Course() {
                 <div className="mt-6 flex gap-4">
                   <Link
                     href="/episodes"
-                    className="text-primary hover:underline"
+                    className="text-primary hover:underline dark:text-white"
                   >
                     🎧 Слухати подкаст
                   </Link>
-                  <a href="/about" className="text-primary hover:underline">
+                  <a
+                    href="/about"
+                    className="text-primary hover:underline dark:text-white"
+                  >
                     👤 Детальніше про автора
                   </a>
                 </div>
@@ -699,7 +584,7 @@ export default function Course() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-slate-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">
@@ -768,7 +653,7 @@ export default function Course() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => openModal("standard")}
-                className="bg-warning text-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-all hover:scale-105"
+                className="bg-warning text-foreground dark:text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-all hover:scale-105"
               >
                 Почати курс зараз
               </button>
@@ -776,7 +661,7 @@ export default function Course() {
                 href="mailto:hello@dushni.la"
                 className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-semibold text-lg transition-all"
               >
-                Задати питання
+                Поставити питання
               </a>
             </div>
 
@@ -796,27 +681,69 @@ const FaqItem: React.FC<React.PropsWithChildren & { title: string }> = ({
   title,
   children,
 }) => (
-  <div className="bg-white rounded-xl p-6">
+  <div className="bg-white dark:bg-slate-700 rounded-xl p-6">
     <h3 className="font-bold text-lg mb-2">{title}</h3>
-    <p className="text-gray-600">{children}</p>
+    <p className="text-gray-600 dark:text-slate-200">{children}</p>
   </div>
 );
 
 const FeedbackItem: React.FC<
   React.PropsWithChildren & { name: string; gender: "f" | "m" }
 > = ({ name, gender, children }) => (
-  <div className="bg-gray-50 rounded-xl p-6">
-    <p className="text-gray-600 mb-4">❝&nbsp;{children}&nbsp;❞</p>
+  <div className="bg-gray-50 dark:bg-primary rounded-xl p-6">
+    <p className="text-gray-600 dark:text-gray-50 mb-4">
+      ❝&nbsp;{children}&nbsp;❞
+    </p>
     <div className="flex items-center">
-      <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-3">
-        <span className="text-white font-bold">{name[0].toUpperCase()}</span>
+      <div className="w-10 h-10 bg-primary dark:bg-yellow-400 rounded-full flex items-center justify-center mr-3">
+        <span className="text-white dark:text-slate-900 font-bold">
+          {name[0].toUpperCase()}
+        </span>
       </div>
       <div>
-        <p className="font-semibold">{name}</p>
-        <p className="text-sm text-gray-500">
+        <p className="font-semibold dark:text-gray-50">{name}</p>
+        <p className="text-sm text-gray-500 dark:text-slate-200">
           Учасни{gender === "f" ? "ця" : "к"} курсу
         </p>
       </div>
     </div>
+  </div>
+);
+
+const ModuleCard: React.FC<
+  React.PropsWithChildren & {
+    style?: React.CSSProperties;
+    number: number;
+    title: string;
+    description: string;
+  }
+> = ({ style, number, title, description }) => (
+  <div className="flex flex-col justify-end items-center" style={style}>
+    <div className="module-card bg-white/90 dark:bg-slate-800 rounded-xl p-6 text-center mb-4 max-w-xs">
+      <div className="w-12 h-12 bg-warning rounded-full flex items-center justify-center mx-auto mb-4">
+        <span className="font-bold text-foreground dark:text-slate-900">
+          {number}
+        </span>
+      </div>
+      <h3 className="font-bold text-lg mb-2">{title}</h3>
+      <p className="text-sm text-gray-600 dark:text-slate-200">{description}</p>
+    </div>
+  </div>
+);
+
+const IncludedCard: React.FC<{
+  emoji: string;
+  title: string;
+  description: string;
+  alt?: boolean;
+}> = ({ emoji, title, description, alt }) => (
+  <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center shadow-sm">
+    <div
+      className={`w-16 h-16 bg-${alt ? "warning/20" : "primary/20"} rounded-full flex items-center justify-center mx-auto mb-4`}
+    >
+      <span className="text-3xl">{emoji}</span>
+    </div>
+    <h3 className="font-bold text-lg mb-2">{title}</h3>
+    <p className="text-gray-600 dark:text-slate-200">{description}</p>
   </div>
 );

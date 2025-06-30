@@ -154,7 +154,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
       //   package: formData.package,
       // });
 
-      // Reset form after 3 seconds and close modal
+      // Reset form after 10 seconds and close modal
       setTimeout(() => {
         setFormData({
           email: "",
@@ -199,11 +199,11 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
             <div className="text-6xl mb-4">🎉</div>
             <h2 className="text-2xl font-bold mb-4 text-success">Дякуємо!</h2>
             <p className="text-lg">
-              Ми отримали вашу заявку і зв&apos;яжемося з вами найближчим часом
-              для узгодження деталей.
+              Вашу заявку отримано! Очікуйте незабаром листа для узгодження
+              деталей.
             </p>
             <p className="text-sm text-gray-500 mt-4">
-              Це вікно закриється автоматично через кілька секунд...
+              Це вікно закриється автоматично через 10 секунд...
             </p>
           </ModalBody>
         </ModalContent>
@@ -216,7 +216,12 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size="lg"
-      scrollBehavior="inside"
+      scrollBehavior="outside"
+      backdrop="blur"
+      classNames={{
+        backdrop:
+          "bg-gradient-to-t from-slate-900 to-zinc-900/10 backdrop-opacity-20",
+      }}
     >
       <ModalContent>
         {(onClose) => (
@@ -224,8 +229,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
             <ModalHeader className="flex flex-col gap-1">
               <h2 className="text-2xl">Приєднатися до курсу</h2>
               <p className="text-sm text-gray-600">
-                Заповніть форму і ми зв&apos;яжемося з вами для узгодження
-                деталей
+                Заповніть форму і я зв&apos;яжуся з вами для узгодження деталей
               </p>
             </ModalHeader>
 
@@ -237,7 +241,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
                   isRequired
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  description="На цей email ми надішлемо деталі курсу"
+                  description="На цей email я надішлю всі деталі"
                 />
 
                 <Input
@@ -285,15 +289,16 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
                   </div>
                 )}
 
+                <div className="flex justify-center">
+                  <div ref={turnstileRef} />
+                </div>
+
                 <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                   <p className="text-sm text-blue-700">
                     <strong>Важливо:</strong> Система онлайн-платежів ще в
-                    розробці. Після заповнення форми ми зв&apos;яжемося з вами
-                    для узгодження способу оплати та надання доступу до курсу.
+                    розробці. Після заповнення форми я зв&apos;яжуся з вами для
+                    узгодження способу оплати та надання доступу до курсу.
                   </p>
-                </div>
-                <div className="flex justify-center">
-                  <div ref={turnstileRef} />
                 </div>
               </div>
             </ModalBody>
@@ -311,6 +316,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
                 color="warning"
                 type="submit"
                 isLoading={isLoading}
+                isDisabled={isLoading}
                 // loadingText="Надсилаємо..."
               >
                 Надіслати заявку
