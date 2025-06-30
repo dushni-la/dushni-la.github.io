@@ -71,11 +71,6 @@ export default function RootLayout({
           async
           src="https://scripts.simpleanalyticscdn.com/latest.js"
         ></script>
-        <script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-          async
-          defer
-        ></script>
       </head>
       <body
         className={`min-h-full overflow-x-hidden ${ptSans.variable} ${hkGrotesque.variable} ${alegreya.variable}`}
