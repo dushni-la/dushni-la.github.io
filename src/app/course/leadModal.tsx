@@ -293,10 +293,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
                   </p>
                 </div>
                 <div className="flex justify-center">
-                  <div
-                    className="cf-turnstile"
-                    data-sitekey="0x4AAAAAABi9MAz9s3TT6v70"
-                  />
+                  <div ref={turnstileRef} />
                 </div>
               </div>
             </ModalBody>
