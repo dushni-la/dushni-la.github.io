@@ -43,8 +43,8 @@ const ROUTES = {
   "/": "ГОЛОВНА",
   "/episodes": "ЕПІЗОДИ",
   "/blog": "БЛОГ",
+  "/course": "КУРС",
   "/about": "ПРО АВТОРА",
-  // "/feedback": "ВІДГУКИ",
 };
 
 type Route = keyof typeof ROUTES;
