@@ -9,7 +9,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import { MdAdd } from "react-icons/md";
+import { MdHeadphones } from "react-icons/md";
 import PlatformLinks from "./PlatformLinks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
@@ -49,8 +49,7 @@ const SuspensedSubscribeButton = (props: Props) => {
   return (
     <>
       <Button color="warning" {...rest} onPress={handleOpen}>
-        <MdAdd />
-        Підписатись
+        <MdHeadphones /> Всі платформи
       </Button>
       <Modal
         itemID="subscribe-modal"

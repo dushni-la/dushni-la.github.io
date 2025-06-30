@@ -24,6 +24,7 @@ const NavbarLink: React.FC<{
 }> = ({ currentPath, href, children, onPress }) => {
   const isActive =
     href === "/" ? currentPath === "/" : currentPath.includes(href);
+
   return (
     <MotionButton
       color={isActive ? "warning" : "default"}
@@ -58,6 +59,7 @@ const Navigation = () => {
       <MotionNavbar
         className="bg-transparent z-[50]"
         onMenuOpenChange={setIsMenuOpen}
+        isMenuOpen={isMenuOpen}
       >
         <NavbarContent className="flex gap-4 justify-start md:justify-center">
           <NavbarMenuToggle
@@ -71,14 +73,6 @@ const Navigation = () => {
               </NavbarLink>
             ))}
           </ButtonGroup>
-          {/*
-          <NavbarLink href="/blog" currentPath={pathname}>
-            Блог
-          </NavbarLink>
-          <NavbarLink href="/feedback" currentPath={pathname}>
-            Відгуки
-          </NavbarLink>
-            */}
         </NavbarContent>
         <NavbarContent justify="end">
           <SubscribeButton color="default" autoOpen={true} />
