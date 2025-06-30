@@ -169,7 +169,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
         if (window.turnstile) {
           window.turnstile.reset(turnstileWidgetId.current);
         }
-      }, 3000);
+      }, 10000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Виникла помилка");
       // analytics.trackEvent("Course Lead Form Error", 1, {
