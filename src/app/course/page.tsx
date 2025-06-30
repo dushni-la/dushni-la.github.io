@@ -33,7 +33,7 @@ export default function Course() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <a
                 href="#packages"
-                className="bg-warning hover:bg-yellow-400 text-foreground dark:text-slate-900 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg"
+                className="bg-warning hover:bg-yellow-400 text-foreground dark:text-slate-900 px-8 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg min-w-[250px]"
               >
                 Почати курс
               </a>
