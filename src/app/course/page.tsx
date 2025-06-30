@@ -1,8 +1,14 @@
+"use client";
+
 import { Image } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
 
-export default async function Course() {
+import { useLeadCaptureModal } from "./leadModal";
+
+export default function Course() {
+  const { openModal, Modal } = useLeadCaptureModal();
+
   return (
     <div>
       {/* Hero Section */}
@@ -540,7 +546,10 @@ export default async function Course() {
                   </li>
                 </ul>
 
-                <button className="w-full bg-gray-800 text-white py-3 rounded-full font-semibold hover:bg-gray-700 transition-colors">
+                <button
+                  onClick={() => openModal("basic")}
+                  className="w-full bg-gray-800 text-white py-3 rounded-full font-semibold hover:bg-gray-700 transition-colors"
+                >
                   Обрати базовий
                 </button>
               </div>
@@ -580,7 +589,10 @@ export default async function Course() {
                   </li>
                 </ul>
 
-                <button className="w-full bg-warning text-foreground py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors">
+                <button
+                  onClick={() => openModal("standard")}
+                  className="w-full bg-warning text-foreground py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors"
+                >
                   Приєднатися до групи
                 </button>
 
@@ -618,7 +630,10 @@ export default async function Course() {
                   </li>
                 </ul>
 
-                <button className="w-full bg-primary text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors">
+                <button
+                  onClick={() => openModal("individual")}
+                  className="w-full bg-primary text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors"
+                >
                   Обрати індивідуальний
                 </button>
               </div>
@@ -751,12 +766,18 @@ export default async function Course() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-warning text-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-all hover:scale-105">
+              <button
+                onClick={() => openModal("standard")}
+                className="bg-warning text-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-all hover:scale-105"
+              >
                 Почати курс зараз
               </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-semibold text-lg transition-all">
+              <a
+                href="mailto:hello@dushni.la"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-semibold text-lg transition-all"
+              >
                 Задати питання
-              </button>
+              </a>
             </div>
 
             <p className="text-sm mt-6 opacity-75">
@@ -765,6 +786,8 @@ export default async function Course() {
           </div>
         </div>
       </section>
+
+      <Modal />
     </div>
   );
 }
