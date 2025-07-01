@@ -4,7 +4,7 @@ import { Providers } from "@/components/Providers";
 import Player from "@/components/Player";
 import Footer from "@/components/Footer";
 import Noise from "@/components/Noise";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Navigation from "@/components/Navigation";
 
 export const metadata: Metadata = {
@@ -31,6 +31,13 @@ export const metadata: Metadata = {
     "ігор кузьменко",
     "кузьменко",
   ],
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 const alegreya = localFont({
