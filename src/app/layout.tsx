@@ -68,14 +68,8 @@ export default function RootLayout({
       <head>
         <script
           defer
-          src="https://api.pirsch.io/pa.js"
-          id="pianjs"
-          data-code="sV5tV5QICPELs7LbVUqOOckmtwwzgdVX"
-        ></script>
-        <script
-          data-collect-dnt="true"
-          async
-          src="https://scripts.simpleanalyticscdn.com/latest.js"
+          src="https://assets.onedollarstats.com/stonks.js"
+          data-debug="dushni.la"
         ></script>
       </head>
       <body
